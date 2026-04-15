@@ -1,14 +1,14 @@
-# Binaries
+# Build artifacts (but keep build/titleflow-* for distribution)
+*.o
+*.a
 *.exe
 *.dll
 *.so
 *.dylib
-
-# Build artifacts
 /dist/
-/build/
-*.o
-*.a
+
+# Allow distributable titleflow binaries in build/
+!build/titleflow-*
 
 # Temp files
 .abacusaiTempFiles/
