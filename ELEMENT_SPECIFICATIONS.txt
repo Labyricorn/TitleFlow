@@ -1,0 +1,151 @@
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                    TITLE-SHOWCASE PACK - ELEMENT SPECS                         ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+┌─ ELEMENT 1: GRADIENT SLIDE ─────────────────────────────────────────────────────┐
+│ Slug: gradient-slide                                                             │
+│ Position: Bottom-Left (40px left, 80px bottom)                                  │
+│ Show Duration: 1200ms | Hide Duration: 800ms                                    │
+│                                                                                  │
+│ Animation Sequence:                                                              │
+│  1. Main title slides in from left with elastic bounce (0-1200ms)               │
+│  2. Subtitle fades up with stagger delay (400-1200ms)                           │
+│  3. On hide: slides back left with reverse easing (0-800ms)                     │
+│                                                                                  │
+│ Text Fields:                                                                     │
+│  • main-title: "Breaking News: Revolutionary Technology Transforms..."          │
+│  • subtitle: "Discover the latest innovations reshaping the future..."          │
+│                                                                                  │
+│ Visual Features:                                                                 │
+│  ✓ Gradient text (pink #ff006e → cyan #00d9ff)                                 │
+│  ✓ Text glow effect                                                             │
+│  ✓ Yellow accent subtitle                                                       │
+│  ✓ Large bold typography (48px primary, 24px secondary)                        │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ ELEMENT 2: TYPEWRITER EFFECT ──────────────────────────────────────────────────┐
+│ Slug: typewriter-effect                                                          │
+│ Position: Top-Right (50px right, 100px top)                                     │
+│ Show Duration: 2000ms | Hide Duration: 600ms                                    │
+│                                                                                  │
+│ Animation Sequence:                                                              │
+│  1. Container scales in from 0.8 (0-600ms)                                      │
+│  2. Header slides down with label and pulsing indicator (0-500ms)               │
+│  3. Main text slides in from left (200-2000ms)                                  │
+│  4. Indicator pulses continuously during show state                             │
+│  5. On hide: scales back down (0-600ms)                                         │
+│                                                                                  │
+│ Text Fields:                                                                     │
+│  • label: "LIVE UPDATE"                                                         │
+│  • main-text: "Comprehensive Analysis: Market Dynamics and Strategic..."        │
+│                                                                                  │
+│ Visual Features:                                                                 │
+│  ✓ Monospace font (Courier New)                                                │
+│  ✓ Dark background with transparency                                            │
+│  ✓ Neon green accent (#00ff88)                                                 │
+│  ✓ Pulsing indicator dot                                                        │
+│  ✓ Left border accent                                                           │
+│  ✓ Tech/live broadcast aesthetic                                                │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ ELEMENT 3: EXPANDING BAR ──────────────────────────────────────────────────────┐
+│ Slug: expanding-bar                                                              │
+│ Position: Center-Bottom (centered, 120px bottom, adjustable x-offset)           │
+│ Show Duration: 1400ms | Hide Duration: 700ms                                    │
+│                                                                                  │
+│ Animation Sequence:                                                              │
+│  1. Background bar expands horizontally from left (0-1200ms)                    │
+│  2. Wrapper fades in (0-400ms)                                                  │
+│  3. Prefix slides in from left (600-1200ms)                                     │
+│  4. Title fades up from bottom (400-1200ms)                                     │
+│  5. Suffix slides in from right (800-1400ms)                                    │
+│  6. On hide: bar collapses and wrapper fades (0-700ms)                          │
+│                                                                                  │
+│ Text Fields:                                                                     │
+│  • prefix: "FEATURED"                                                           │
+│  • title: "Innovative Solutions Driving Unprecedented Growth and..."            │
+│  • suffix: "→"                                                                  │
+│                                                                                  │
+│ Visual Features:                                                                 │
+│  ✓ Full-width centered bar                                                      │
+│  ✓ Gradient background (dark blue)                                              │
+│  ✓ Red accent color (#ff1744)                                                  │
+│  ✓ Staggered element reveals                                                    │
+│  ✓ Professional news ticker aesthetic                                           │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ ELEMENT 4: ROTATING PERSPECTIVE ───────────────────────────────────────────────┐
+│ Slug: rotating-perspective                                                       │
+│ Position: Top-Left (60px left, 150px top)                                       │
+│ Show Duration: 1600ms | Hide Duration: 900ms                                    │
+│                                                                                  │
+│ Animation Sequence:                                                              │
+│  1. Container rotates in 3D (rotateY -90° → 0°, rotateX 20° → 0°)              │
+│     with opacity fade (0-1600ms)                                                │
+│  2. Background scales down from 0 (0-800ms)                                     │
+│  3. Badge slides down (400-1000ms)                                              │
+│  4. Headline slides in from left (600-1600ms)                                   │
+│  5. Accent line expands from left (1000-1800ms)                                 │
+│  6. On hide: rotates back out in reverse (0-900ms)                              │
+│                                                                                  │
+│ Text Fields:                                                                     │
+│  • badge: "EXCLUSIVE COVERAGE"                                                  │
+│  • headline: "Transformative Industry Insights: Comprehensive Analysis..."      │
+│                                                                                  │
+│ Visual Features:                                                                 │
+│  ✓ 3D perspective transforms                                                    │
+│  ✓ Gradient background (purple #667eea → violet #764ba2)                       │
+│  ✓ Cyan accent (#00d9ff)                                                       │
+│  ✓ Expanding accent line                                                        │
+│  ✓ Premium/exclusive aesthetic                                                  │
+│  ✓ Dark semi-transparent background                                             │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                         DOCK CONTROL SUMMARY                                   ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+All elements expose the following control types via CSS variables:
+
+✓ Color Pickers:
+  - Gradient colors (start/end)
+  - Primary, secondary, accent colors
+  - Background colors
+
+✓ Duration Sliders:
+  - Show duration (600ms - 2000ms range)
+  - Hide duration (600ms - 900ms range)
+
+✓ Font Size Controls:
+  - Primary font size (38px - 48px)
+  - Secondary font size (11px - 24px)
+
+✓ Position Controls:
+  - Left/Right positioning
+  - Top/Bottom positioning
+  - X-offset for centered elements
+
+✓ Text Bindings:
+  - All text content is editable from dock
+  - Labels auto-generated from binding keys
+  - Real-time updates on text change
+
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                      TESTING CHECKLIST                                         ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+□ Load pack in TitleFlow dock
+□ Verify all 4 elements appear in element list
+□ Test "Show" button on each element
+□ Verify animations play smoothly
+□ Test "Hide" button on each element
+□ Verify hide animations complete properly
+□ Edit text fields and verify updates
+□ Adjust color controls and verify changes
+□ Adjust duration controls and verify timing
+□ Adjust position controls and verify movement
+□ Test Reset button on each element
+□ Verify no animation glitches or overlaps
+□ Test rapid show/hide sequences
+□ Verify verbose text renders without clipping
+

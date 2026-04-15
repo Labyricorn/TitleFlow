@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@700&family=Barlow+Condensed:wght@700&display=swap');
+
+#tf-element-reaction-counter {
+  --tf-ui-show-duration: 400ms;
+  --tf-ui-hide-duration: 300ms;
+  --tf-ui-accent-color: #E8002A;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 1080px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity var(--tf-ui-show-duration) ease, transform var(--tf-ui-show-duration) ease;
+}
+
+#tf-element-reaction-counter.tf-fired {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+#tf-element-reaction-counter.tf-hiding {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity var(--tf-ui-hide-duration) ease, transform var(--tf-ui-hide-duration) ease;
+}
+
+.rc-card {
+  position: absolute;
+  left: 1490px;
+  top: 220px;
+  width: 340px;
+  height: 200px;
+  background: rgba(10, 10, 10, 0.9);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.rc-top-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 340px;
+  height: 10px;
+  background: var(--tf-ui-accent-color);
+}
+
+.rc-panelist {
+  position: absolute;
+  left: 28px;
+  top: 28px;
+  width: 280px;
+  margin: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  color: #F5F0E8;
+  line-height: 1;
+}
+
+.rc-label {
+  position: absolute;
+  left: 28px;
+  top: 84px;
+  width: 280px;
+  margin: 0;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #FFD600;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+.rc-value {
+  position: absolute;
+  left: 28px;
+  top: 120px;
+  width: 160px;
+  margin: 0;
+  font-family: 'Space Mono', monospace;
+  font-size: 52px;
+  font-weight: 700;
+  color: #F5F0E8;
+  line-height: 1;
+}

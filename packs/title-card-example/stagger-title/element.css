@@ -1,0 +1,67 @@
+.stagger-title {
+  /* Tuneable colors */
+  --tf-ui-color-line1: #e55643;
+  --tf-ui-color-line2: #2b9f5e;
+  --tf-ui-color-line3: #f1c83c;
+  --tf-ui-shadow-color: #533d4a;
+
+  /* Typography */
+  --tf-ui-font-size: 42px;
+
+  /* Animation durations */
+  --tf-ui-show-duration: 500ms;
+  --tf-ui-hide-duration: 500ms;
+
+  font-family: 'Fjalla One', sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  max-width: 225px;
+}
+
+.stagger-title h1 {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: var(--tf-ui-font-size, 42px);
+  margin: 0;
+  line-height: 1.12;
+  letter-spacing: 2px;
+}
+
+.stagger-title__line {
+  transform: translateX(-50%) rotate(-10deg);
+  display: block;
+  float: left;
+  left: 50%;
+  position: relative;
+}
+
+/* Individual character spans injected by lettering.js */
+.stagger-title__line span {
+  transform: skew(-10deg);
+  display: block;
+  float: left;
+  text-shadow:
+    var(--tf-ui-shadow-color, #533d4a) 1px 1px,
+    var(--tf-ui-shadow-color, #533d4a) 2px 2px,
+    var(--tf-ui-shadow-color, #533d4a) 3px 3px,
+    var(--tf-ui-shadow-color, #533d4a) 4px 4px,
+    var(--tf-ui-shadow-color, #533d4a) 5px 5px,
+    var(--tf-ui-shadow-color, #533d4a) 6px 6px;
+  min-width: 10px;
+  min-height: 10px;
+  position: relative;
+}
+
+.stagger-title__line:nth-child(1) { color: var(--tf-ui-color-line1, #e55643); }
+.stagger-title__line:nth-child(2) { color: var(--tf-ui-color-line2, #2b9f5e); }
+.stagger-title__line:nth-child(3) { color: var(--tf-ui-color-line3, #f1c83c); }
+
+/* Hide animation - reverses the show animation */
+#tf-element-stagger-title.tf-hiding {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.95);
+  transition: opacity var(--tf-ui-hide-duration) ease, transform var(--tf-ui-hide-duration) ease;
+}

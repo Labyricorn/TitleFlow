@@ -1,0 +1,110 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
+@import url(https://fonts.googleapis.com/css?family=Arimo:400,700);
+
+.lt-slide-split {
+  position: absolute;
+  left:      50%;
+  transform: translateX(calc(-50% + var(--tf-ui-x-offset, 0px)));
+  bottom:    var(--tf-ui-bottom, 120px);
+  width: 320px;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  line-height: 1;
+
+  --tf-ui-x-offset: 0px;   /* offset from center; positive = right, negative = left */
+  --tf-ui-bottom:   120px;
+  --tf-ui-accent-color: #cf4c4e;
+  --tf-ui-text-color: #ffffff;
+  --tf-ui-show-duration: 1800ms;
+  --tf-ui-onscreen-duration: 6800ms; /* fire→hide delay: show-duration + desired hold */
+  --tf-ui-hide-duration: 600ms;
+}
+
+.lss-name-mask {
+  font-size: 2.8em;
+  height: 1em;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.lss-name-mask span {
+  display: block;
+  position: absolute;
+  width: 100%;
+  font-family: 'Arimo', sans-serif;
+  font-weight: 700;
+  color: var(--tf-ui-accent-color);
+  animation-name: lss-name-in, lss-name-out;
+  animation-duration: var(--tf-ui-show-duration, 1800ms), var(--tf-ui-hide-duration, 600ms);
+  animation-timing-function: ease-out, ease;
+  animation-delay: 0ms, var(--tf-ui-onscreen-duration, 6800ms);
+  animation-iteration-count: 1, 1;
+  animation-fill-mode: forwards;
+}
+
+.lss-title-mask {
+  font-size: 1.1em;
+  height: 1em;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.lss-title-mask span {
+  display: block;
+  position: absolute;
+  width: 100%;
+  font-weight: 300;
+  color: var(--tf-ui-text-color);
+  animation-name: lss-title-in, lss-title-out;
+  animation-duration: var(--tf-ui-show-duration, 1800ms), var(--tf-ui-hide-duration, 600ms);
+  animation-timing-function: ease-out, ease;
+  animation-delay: 0ms, var(--tf-ui-onscreen-duration, 6800ms);
+  animation-iteration-count: 1, 1;
+  animation-fill-mode: forwards;
+}
+
+/* .tf-hiding — immediate on-demand hide overrides the timed chain */
+#tf-element-lt-slide-split.tf-hiding .lss-name-mask span {
+  animation-name: lss-name-out;
+  animation-duration: var(--tf-ui-hide-duration, 600ms);
+  animation-timing-function: ease;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+#tf-element-lt-slide-split.tf-hiding .lss-title-mask span {
+  animation-name: lss-title-out;
+  animation-duration: var(--tf-ui-hide-duration, 600ms);
+  animation-timing-function: ease;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes lss-name-in {
+  0%   { transform: translateY(100%); }
+  30%  { transform: translateY(100%); }
+  60%  { transform: translateY(0); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes lss-name-out {
+  from { transform: translateY(0); }
+  to   { transform: translateY(100%); }
+}
+
+@keyframes lss-title-in {
+  0%   { transform: translateY(-100%); }
+  30%  { transform: translateY(-100%); }
+  60%  { transform: translateY(0); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes lss-title-out {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-100%); }
+}

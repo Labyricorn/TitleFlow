@@ -1,0 +1,222 @@
+.expanding-bar-container {
+  --tf-ui-show-duration: 1400ms;
+  --tf-ui-hide-duration: 700ms;
+  --tf-ui-primary-color: #ffffff;
+  --tf-ui-accent-color: #ff1744;
+  --tf-ui-background-color: #1a1a2e;
+  --tf-ui-secondary-color: #16213e;
+  --tf-ui-font-size-primary: 38px;
+  --tf-ui-font-size-secondary: 11px;
+  --tf-ui-x-offset: 0px;
+  --tf-ui-bottom: 120px;
+  
+  position: fixed;
+  left: 50%;
+  bottom: var(--tf-ui-bottom);
+  transform: translateX(calc(-50% + var(--tf-ui-x-offset)));
+  z-index: 100;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+.expanding-bar-wrapper {
+  position: relative;
+  opacity: 0;
+}
+
+#tf-element-expanding-bar.tf-fired .expanding-bar-wrapper {
+  animation: bar-wrapper-fade 0.4s ease-out forwards;
+}
+
+@keyframes bar-wrapper-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.expanding-bar-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, var(--tf-ui-background-color), var(--tf-ui-secondary-color));
+  border-radius: 8px;
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: -1;
+}
+
+#tf-element-expanding-bar.tf-fired .expanding-bar-background {
+  animation: bar-expand 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes bar-expand {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.expanding-bar-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.expanding-bar-prefix {
+  font-size: var(--tf-ui-font-size-secondary);
+  color: var(--tf-ui-accent-color);
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateX(-20px);
+  flex-shrink: 0;
+}
+
+#tf-element-expanding-bar.tf-fired .expanding-bar-prefix {
+  animation: prefix-slide-in 0.6s ease-out 0.6s forwards;
+}
+
+@keyframes prefix-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.expanding-bar-title {
+  margin: 0;
+  font-size: var(--tf-ui-font-size-primary);
+  color: var(--tf-ui-primary-color);
+  font-weight: 800;
+  line-height: 1.2;
+  flex: 1;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+#tf-element-expanding-bar.tf-fired .expanding-bar-title {
+  animation: title-fade-up 0.8s ease-out 0.4s forwards;
+}
+
+@keyframes title-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.expanding-bar-suffix {
+  font-size: 28px;
+  color: var(--tf-ui-accent-color);
+  font-weight: 900;
+  opacity: 0;
+  transform: translateX(20px);
+  flex-shrink: 0;
+}
+
+#tf-element-expanding-bar.tf-fired .expanding-bar-suffix {
+  animation: suffix-slide-in 0.6s ease-out 0.8s forwards;
+}
+
+@keyframes suffix-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+#tf-element-expanding-bar.tf-hiding .expanding-bar-prefix {
+   animation: prefix-slide-out 0.3s ease-in 0s forwards;
+}
+
+@keyframes prefix-slide-out {
+   from {
+     opacity: 1;
+     transform: translateX(0);
+   }
+   to {
+     opacity: 0;
+     transform: translateX(-20px);
+   }
+}
+
+#tf-element-expanding-bar.tf-hiding .expanding-bar-title {
+   animation: title-fade-down 0.3s ease-in 0s forwards;
+}
+
+@keyframes title-fade-down {
+   from {
+     opacity: 1;
+     transform: translateY(0);
+   }
+   to {
+     opacity: 0;
+     transform: translateY(20px);
+   }
+}
+
+#tf-element-expanding-bar.tf-hiding .expanding-bar-suffix {
+   animation: suffix-slide-out 0.3s ease-in 0s forwards;
+}
+
+@keyframes suffix-slide-out {
+   from {
+     opacity: 1;
+     transform: translateX(0);
+   }
+   to {
+     opacity: 0;
+     transform: translateX(20px);
+   }
+}
+
+#tf-element-expanding-bar.tf-hiding .expanding-bar-background {
+   animation: bar-collapse 0.4s cubic-bezier(0.36, 0, 0.66, -0.56) 0.3s forwards;
+}
+
+@keyframes bar-collapse {
+   0% {
+     transform: scaleX(1);
+   }
+   100% {
+     transform: scaleX(0);
+   }
+}
+
+#tf-element-expanding-bar.tf-hiding .expanding-bar-wrapper {
+   animation: bar-wrapper-fade-out var(--tf-ui-hide-duration) ease-in forwards;
+}
+
+@keyframes bar-wrapper-fade-out {
+   from {
+     opacity: 1;
+   }
+   to {
+     opacity: 0;
+   }
+}

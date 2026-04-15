@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@700&family=Barlow+Condensed:wght@700&display=swap');
+
+#tf-element-breaking-slash {
+  --tf-ui-show-duration: 500ms;
+  --tf-ui-hide-duration: 400ms;
+  --tf-ui-slash-color: #E8002A;
+  --tf-ui-accent-color: #FFD600;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 1080px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity var(--tf-ui-show-duration) ease, transform var(--tf-ui-show-duration) ease;
+}
+
+#tf-element-breaking-slash.tf-fired {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+#tf-element-breaking-slash.tf-hiding {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity var(--tf-ui-hide-duration) ease, transform var(--tf-ui-hide-duration) ease;
+}
+
+.bs-group {
+  position: absolute;
+  left: 1280px;
+  top: 0;
+  width: 640px;
+  height: 1080px;
+  overflow: hidden;
+}
+
+.bs-red-slash {
+  position: absolute;
+  left: 150px;
+  top: -120px;
+  width: 380px;
+  height: 1320px;
+  background: var(--tf-ui-slash-color);
+  clip-path: polygon(100px 0%, 100% 0%, calc(100% - 100px) 100%, 0% 100%);
+}
+
+.bs-yellow-accent {
+  position: absolute;
+  left: 220px;
+  top: -120px;
+  width: 24px;
+  height: 1320px;
+  background: var(--tf-ui-accent-color);
+  clip-path: polygon(100px 0%, 100% 0%, calc(100% - 100px) 100%, 0% 100%);
+}
+
+.bs-corner-badge-bg {
+  position: absolute;
+  left: 356px;
+  top: 40px;
+  width: 220px;
+  height: 44px;
+  background: var(--tf-ui-accent-color);
+  border-radius: 10px;
+}
+
+.bs-breaking-label {
+  position: absolute;
+  left: 220px;
+  top: 312px;
+  margin: 0;
+  font-family: 'Space Mono', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--tf-ui-accent-color);
+  letter-spacing: 0.24em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.bs-badge-text {
+  position: absolute;
+  left: 382px;
+  top: 47px;
+  width: 170px;
+  margin: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #0A0A0A;
+  letter-spacing: 0.12em;
+  line-height: 1;
+}
+
+.bs-headline {
+  position: absolute;
+  left: 182px;
+  top: 360px;
+  width: 360px;
+  margin: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 82px;
+  font-weight: 700;
+  color: #F5F0E8;
+  line-height: 0.92;
+}
+
+.bs-subline {
+  position: absolute;
+  left: 190px;
+  top: 540px;
+  width: 330px;
+  margin: 0;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: rgba(245, 240, 232, 0.7);
+  letter-spacing: 0.08em;
+  line-height: 1.15;
+}

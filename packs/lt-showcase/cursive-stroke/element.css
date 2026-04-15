@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@700&display=swap');
+
+.lt-cursive-stroke {
+  --tf-ui-left: 20px;
+  --tf-ui-bottom: 40px;
+  --tf-ui-show-duration: 1200ms;
+  --tf-ui-hide-duration: 600ms;
+  --tf-ui-first-color-start: #FF9900;
+  --tf-ui-first-color-end: #FFD700;
+  --tf-ui-last-color: #ffffff;
+  --tf-ui-last-stroke-color: #ffffff;
+  --tf-ui-last-stroke-width: 1px;
+  --tf-ui-font-size-first: 48px;
+  --tf-ui-font-size-last: 40px;
+
+  position: fixed;
+  left: var(--tf-ui-left);
+  bottom: var(--tf-ui-bottom);
+  z-index: 1000;
+}
+
+.cs-first-name {
+  font-family: 'Playfair Display', serif;
+  font-size: var(--tf-ui-font-size-first);
+  font-weight: 700;
+  font-style: italic;
+  background: linear-gradient(90deg, var(--tf-ui-first-color-start), var(--tf-ui-first-color-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 8px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.cs-first-name span {
+  display: block;
+}
+
+.cs-last-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: var(--tf-ui-font-size-last);
+  font-weight: 700;
+  color: var(--tf-ui-last-color);
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 1;
+  -webkit-text-stroke: var(--tf-ui-last-stroke-width) var(--tf-ui-last-stroke-color);
+}
+
+.cs-last-name span {
+  display: block;
+  opacity: 0;
+}
+
+/* Show animations */
+#tf-element-cursive-stroke.tf-fired .cs-first-name {
+  animation: cs-write var(--tf-ui-show-duration) ease-in-out forwards;
+}
+
+#tf-element-cursive-stroke.tf-fired .cs-last-name span {
+  animation: cs-bounce var(--tf-ui-show-duration) cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: 400ms;
+}
+
+@keyframes cs-write {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cs-bounce {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Hide animations */
+#tf-element-cursive-stroke.tf-hiding .cs-first-name,
+#tf-element-cursive-stroke.tf-hiding .cs-last-name {
+  animation-name: cs-out;
+  animation-duration: var(--tf-ui-hide-duration);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes cs-out {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0);
+    opacity: 0;
+  }
+}

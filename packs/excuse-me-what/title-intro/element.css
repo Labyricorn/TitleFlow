@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@700&family=Barlow+Condensed:wght@700&display=swap');
+
+#tf-element-title-intro {
+  --tf-ui-show-duration: 400ms;
+  --tf-ui-hide-duration: 400ms;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 1080px;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity var(--tf-ui-show-duration) ease, transform var(--tf-ui-show-duration) ease;
+}
+
+#tf-element-title-intro.tf-fired {
+  opacity: 1;
+  transform: scale(1);
+}
+
+#tf-element-title-intro.tf-hiding {
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity var(--tf-ui-hide-duration) ease, transform var(--tf-ui-hide-duration) ease;
+}
+
+.ti-card {
+  position: absolute;
+  left: 160px;
+  top: 160px;
+  width: 1600px;
+  height: 760px;
+  background: rgba(10, 10, 10, 0.88);
+  border-radius: 32px;
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.ti-yellow-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1600px;
+  height: 12px;
+  background: #FFD600;
+}
+
+.ti-eyebrow {
+  position: absolute;
+  left: 96px;
+  top: 96px;
+  width: 500px;
+  margin: 0;
+  font-family: 'Space Mono', monospace;
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFD600;
+  letter-spacing: 0.26em;
+  line-height: 1;
+}
+
+.ti-headline {
+  position: absolute;
+  left: 96px;
+  top: 180px;
+  width: 1200px;
+  margin: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 132px;
+  font-weight: 700;
+  color: #F5F0E8;
+  letter-spacing: 0.04em;
+  line-height: 0.92;
+}
+
+.ti-tagline {
+  position: absolute;
+  left: 100px;
+  top: 430px;
+  width: 1000px;
+  margin: 0;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  color: #E8002A;
+  line-height: 1.15;
+}

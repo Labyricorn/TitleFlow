@@ -1,0 +1,152 @@
+.lt-pill-border-outline {
+  --tf-ui-left: 20px;
+  --tf-ui-bottom: 40px;
+  --tf-ui-show-duration: 1000ms;
+  --tf-ui-hide-duration: 700ms;
+  --tf-ui-outline-color: #FFD700;
+  --tf-ui-outline-width: 3px;
+  --tf-ui-text-color: #ffffff;
+  --tf-ui-subtitle-color: #FF9900;
+  --tf-ui-font-size-name: 44px;
+  --tf-ui-font-size-subtitle: 12px;
+
+  position: fixed;
+  left: var(--tf-ui-left);
+  bottom: var(--tf-ui-bottom);
+  font-family: 'Montserrat', sans-serif;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 400px;
+  min-height: 100px;
+}
+
+.pbo-pill-outline {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: var(--tf-ui-outline-color);
+  top: 0;
+  left: 0;
+}
+
+.pbo-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
+.pbo-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+  padding: 0 40px;
+}
+
+.pbo-name {
+  font-size: var(--tf-ui-font-size-name);
+  font-weight: 800;
+  color: var(--tf-ui-text-color);
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  line-height: 1;
+  overflow: hidden;
+}
+
+.pbo-name span {
+  display: block;
+  transform: scale(0);
+}
+
+.pbo-subtitle {
+  font-size: var(--tf-ui-font-size-subtitle);
+  font-weight: 700;
+  color: var(--tf-ui-subtitle-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  overflow: hidden;
+  padding-bottom: 12px;
+}
+
+.pbo-subtitle span {
+  display: block;
+  transform: scale(0);
+}
+
+/* Show animations */
+#tf-element-pill-border-outline.tf-fired .pbo-path {
+  animation: pbo-draw 0.8s ease-out forwards;
+}
+
+#tf-element-pill-border-outline.tf-fired .pbo-name span {
+  animation: pbo-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: 0.6s;
+}
+
+#tf-element-pill-border-outline.tf-fired .pbo-subtitle span {
+  animation: pbo-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: 0.8s;
+}
+
+@keyframes pbo-draw {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pbo-pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Hide animations */
+#tf-element-pill-border-outline.tf-hiding .pbo-path {
+  animation-name: pbo-erase;
+  animation-duration: var(--tf-ui-hide-duration);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+#tf-element-pill-border-outline.tf-hiding .pbo-name span,
+#tf-element-pill-border-outline.tf-hiding .pbo-subtitle span {
+  animation-name: pbo-shrink;
+  animation-duration: var(--tf-ui-hide-duration);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes pbo-erase {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 1000;
+  }
+}
+
+@keyframes pbo-shrink {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0);
+    opacity: 0;
+  }
+}

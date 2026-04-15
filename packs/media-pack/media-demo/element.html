@@ -1,0 +1,25 @@
+<button data-tf-fire="show" data-tf-label="Show Avatar" style="display:none"></button>
+<button data-tf-fire="hide" data-tf-label="Hide Avatar" style="display:none"></button>
+<button data-tf-fire="play-sound" data-tf-label="Play Sound" style="display:none"></button>
+
+<audio id="media-demo-audio" style="display:none">
+  <source src="media-demo/assets/sound-its_alive.wav" type="audio/wav">
+</audio>
+
+<div class="media-demo">
+  <div class="media-demo__container">
+    <div class="media-demo__image-wrapper">
+      <img src="media-demo/assets/image-avatar.png" alt="Avatar" class="media-demo__image">
+    </div>
+    <div class="media-demo__caption"
+         data-tf-bind="caption"
+         data-tf-label="Caption">Avatar</div>
+    <button class="media-demo__sound-btn"
+            onclick="document.dispatchEvent(new CustomEvent('tf:fire', { detail: { element: 'media-demo', event: 'play-sound' } }))">
+      <span class="media-demo__sound-btn-text"
+            data-tf-bind="button-text"
+            data-tf-label="Sound Button Text">🔊 Play Sound</span>
+    </button>
+    <div class="media-demo__sound-feedback"></div>
+  </div>
+</div>

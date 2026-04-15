@@ -1,0 +1,110 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
+@import url(https://fonts.googleapis.com/css?family=Arimo:400,700);
+
+.lt-name-split {
+  position: absolute;
+  bottom: var(--tf-ui-bottom, 120px);
+  left:   var(--tf-ui-left,   100px);
+  width: 320px;
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  line-height: 1;
+
+  --tf-ui-left:   100px;
+  --tf-ui-bottom: 120px;
+  --tf-ui-accent-color: #cf4c4e;
+  --tf-ui-text-color: #ffffff;
+  --tf-ui-show-duration: 1920ms;
+  --tf-ui-onscreen-duration: 6920ms; /* fire→hide delay: show-duration + desired hold */
+  --tf-ui-hide-duration: 600ms;
+}
+
+.lns-first,
+.lns-last {
+  display: inline-block;
+  width: 50%;
+  height: 1em;
+  overflow: hidden;
+  position: relative;
+  vertical-align: top;
+}
+
+.lns-first {
+  font-size: 2.4em;
+  text-align: right;
+  letter-spacing: 1px;
+}
+
+.lns-last {
+  font-size: 2.5em;
+  line-height: 1.15;
+  letter-spacing: -1px;
+}
+
+.lns-first span {
+  display: block;
+  color: var(--tf-ui-text-color);
+  font-weight: 300;
+  animation-name: lns-first-in, lns-first-out;
+  animation-duration: var(--tf-ui-show-duration, 1920ms), var(--tf-ui-hide-duration, 600ms);
+  animation-timing-function: ease-out, ease;
+  animation-delay: 0ms, var(--tf-ui-onscreen-duration, 6920ms);
+  animation-iteration-count: 1, 1;
+  animation-fill-mode: forwards;
+}
+
+.lns-last span {
+  display: block;
+  font-family: 'Arimo', sans-serif;
+  font-weight: 700;
+  color: var(--tf-ui-accent-color);
+  animation-name: lns-last-in, lns-last-out;
+  animation-duration: var(--tf-ui-show-duration, 1920ms), var(--tf-ui-hide-duration, 600ms);
+  animation-timing-function: ease-out, ease;
+  animation-delay: 0ms, var(--tf-ui-onscreen-duration, 6920ms);
+  animation-iteration-count: 1, 1;
+  animation-fill-mode: forwards;
+}
+
+/* .tf-hiding — immediate on-demand hide overrides the timed chain */
+#tf-element-lt-name-split.tf-hiding .lns-first span {
+  animation-name: lns-first-out;
+  animation-duration: var(--tf-ui-hide-duration, 600ms);
+  animation-timing-function: ease;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+#tf-element-lt-name-split.tf-hiding .lns-last span {
+  animation-name: lns-last-out;
+  animation-duration: var(--tf-ui-hide-duration, 600ms);
+  animation-timing-function: ease;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes lns-first-in {
+  0%   { transform: translateX(100%); }
+  30%  { transform: translateX(100%); }
+  60%  { transform: translateX(0); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes lns-first-out {
+  from { transform: translateX(0); }
+  to   { transform: translateX(100%); }
+}
+
+@keyframes lns-last-in {
+  0%   { transform: translateX(-100%); }
+  30%  { transform: translateX(-100%); }
+  60%  { transform: translateX(0); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes lns-last-out {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}

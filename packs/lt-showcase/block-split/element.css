@@ -1,0 +1,151 @@
+.lt-teal-block-split {
+  --tf-ui-left: 20px;
+  --tf-ui-bottom: 40px;
+  --tf-ui-show-duration: 900ms;
+  --tf-ui-hide-duration: 700ms;
+  --tf-ui-text-color: #ffffff;
+  --tf-ui-teal-color: #00CED1;
+  --tf-ui-font-size-first: 44px;
+  --tf-ui-font-size-last: 36px;
+  --tf-ui-font-size-role: 13px;
+
+  position: fixed;
+  left: var(--tf-ui-left);
+  bottom: var(--tf-ui-bottom);
+  font-family: 'Poppins', sans-serif;
+  z-index: 1000;
+}
+
+.tbs-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tbs-first-name {
+  font-size: var(--tf-ui-font-size-first);
+  font-weight: 800;
+  color: var(--tf-ui-text-color);
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  line-height: 1;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.tbs-first-name span {
+  display: block;
+}
+
+.tbs-last-name-wrapper {
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.tbs-teal-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background-color: var(--tf-ui-teal-color);
+  z-index: -1;
+}
+
+.tbs-last-name {
+  font-size: var(--tf-ui-font-size-last);
+  font-weight: 600;
+  color: var(--tf-ui-text-color);
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  padding-bottom: 2px;
+  overflow: hidden;
+}
+
+.tbs-last-name span {
+  display: block;
+}
+
+.tbs-role {
+  font-size: var(--tf-ui-font-size-role);
+  font-weight: 500;
+  color: var(--tf-ui-text-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.tbs-role span {
+  display: block;
+}
+
+/* Show animations */
+#tf-element-block-split.tf-fired .tbs-first-name {
+  animation: tbs-slide-left var(--tf-ui-show-duration) cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+#tf-element-block-split.tf-fired .tbs-last-name-wrapper {
+  animation: tbs-slide-right var(--tf-ui-show-duration) cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: 100ms;
+}
+
+#tf-element-block-split.tf-fired .tbs-role {
+  animation: tbs-fade-in var(--tf-ui-show-duration) ease-out forwards;
+  animation-delay: 200ms;
+}
+
+@keyframes tbs-slide-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes tbs-slide-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes tbs-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Hide animations */
+#tf-element-block-split.tf-hiding .tbs-first-name,
+#tf-element-block-split.tf-hiding .tbs-last-name-wrapper,
+#tf-element-block-split.tf-hiding .tbs-role {
+  animation-name: tbs-out;
+  animation-duration: var(--tf-ui-hide-duration);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes tbs-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}

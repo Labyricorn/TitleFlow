@@ -1,0 +1,155 @@
+.david-simon {
+  --tf-ui-left: 60px;
+  --tf-ui-bottom: 80px;
+  --tf-ui-show-duration: 900ms;
+  --tf-ui-hide-duration: 700ms;
+  --tf-ui-opacity: 1;
+  --tf-ui-name-font-size: 28px;
+  --tf-ui-subtitle-font-size: 14px;
+
+  position: fixed;
+  left: var(--tf-ui-left);
+  bottom: var(--tf-ui-bottom);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: transparent;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  opacity: var(--tf-ui-opacity);
+  z-index: 9999;
+}
+
+.david-simon__bar {
+  height: 3px;
+  background: linear-gradient(90deg, #00d4ff 0%, #0099cc 100%);
+  margin-bottom: 8px;
+
+  animation-name: ds-bar-in, ds-bar-out;
+  animation-duration: 500ms, var(--tf-ui-hide-duration, 700ms);
+  animation-delay: 100ms, var(--tf-ui-onscreen-duration, 10000ms);
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+.tf-element.tf-fired .david-simon__bar {
+  animation-play-state: running;
+}
+
+.david-simon__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 0;
+
+  animation-name: ds-content-in, ds-content-out;
+  animation-duration: 600ms, var(--tf-ui-hide-duration, 700ms);
+  animation-delay: 350ms, var(--tf-ui-onscreen-duration, 10000ms);
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+.tf-element.tf-fired .david-simon__content {
+  animation-play-state: running;
+}
+
+.david-simon__name {
+  font-size: var(--tf-ui-name-font-size, 28px);
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #00d4ff;
+  text-transform: uppercase;
+}
+
+.david-simon__title {
+  font-size: var(--tf-ui-subtitle-font-size, 14px);
+  font-weight: 400;
+  color: #0099cc;
+  letter-spacing: 1px;
+}
+
+/* Bar entrance: scale up from bottom */
+@keyframes ds-bar-in {
+  0% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    opacity: 0;
+  }
+  100% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+    opacity: 1;
+  }
+}
+
+/* Bar exit: scale down to bottom */
+@keyframes ds-bar-out {
+  0% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    opacity: 0;
+  }
+}
+
+/* Content entrance: slide up + fade with rotation */
+@keyframes ds-content-in {
+  0% {
+    transform: translateY(24px) rotateX(90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+/* Content exit: slide down + fade with rotation */
+@keyframes ds-content-out {
+  0% {
+    transform: translateY(0) rotateX(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(24px) rotateX(90deg);
+    opacity: 0;
+  }
+}
+
+/* Hide animation override */
+#tf-element-david-simon.tf-hiding .david-simon__bar {
+  animation-name: ds-bar-out;
+  animation-duration: var(--tf-ui-hide-duration, 700ms);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+#tf-element-david-simon.tf-hiding .david-simon__content {
+  animation-name: ds-content-out;
+  animation-duration: var(--tf-ui-hide-duration, 700ms);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+/* Flash animation */
+@keyframes david-simon-flash {
+  0%, 100% { opacity: var(--tf-ui-opacity); }
+  50% { opacity: calc(var(--tf-ui-opacity) * 0.4); }
+}
+
+#tf-element-david-simon.tf-flashing .david-simon {
+  animation: david-simon-flash 0.3s ease-in-out 3;
+}
+
+/* Pulse animation */
+@keyframes david-simon-pulse {
+  0%, 100% { opacity: var(--tf-ui-opacity); }
+  50% { opacity: calc(var(--tf-ui-opacity) * 0.6); }
+}
+
+#tf-element-david-simon.tf-pulsing .david-simon {
+  animation: david-simon-pulse 2s ease-in-out infinite;
+}

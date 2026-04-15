@@ -1,0 +1,130 @@
+.lt-blue-header-block {
+  --tf-ui-left: 20px;
+  --tf-ui-bottom: 40px;
+  --tf-ui-show-duration: 1000ms;
+  --tf-ui-hide-duration: 700ms;
+  --tf-ui-block-color: #0066FF;
+  --tf-ui-text-color: #ffffff;
+  --tf-ui-font-size-name: 48px;
+  --tf-ui-font-size-subtitle: 14px;
+
+  position: fixed;
+  left: var(--tf-ui-left);
+  bottom: var(--tf-ui-bottom);
+  font-family: 'Montserrat', sans-serif;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.bhb-block {
+  width: 0;
+  min-height: 100px;
+  background-color: var(--tf-ui-block-color);
+  flex-shrink: 0;
+}
+
+.bhb-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.bhb-name {
+  font-size: var(--tf-ui-font-size-name);
+  font-weight: 900;
+  color: var(--tf-ui-text-color);
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 1;
+  overflow: hidden;
+}
+
+.bhb-name span {
+  display: block;
+  opacity: 0;
+}
+
+.bhb-subtitle {
+  font-size: var(--tf-ui-font-size-subtitle);
+  font-weight: 700;
+  color: var(--tf-ui-text-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  overflow: hidden;
+}
+
+.bhb-subtitle span {
+  display: block;
+  opacity: 0;
+}
+
+/* Show animations */
+#tf-element-header-block.tf-fired .bhb-block {
+  animation: bhb-expand var(--tf-ui-show-duration) cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+#tf-element-header-block.tf-fired .bhb-name span {
+  animation: bhb-text-fade 0.6s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+#tf-element-header-block.tf-fired .bhb-subtitle span {
+  animation: bhb-text-fade 0.5s ease-out forwards;
+  animation-delay: 0.7s;
+}
+
+@keyframes bhb-expand {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes bhb-text-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Hide animations */
+#tf-element-header-block.tf-hiding .bhb-block {
+  animation-name: bhb-shrink;
+  animation-duration: var(--tf-ui-hide-duration);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+#tf-element-header-block.tf-hiding .bhb-name span,
+#tf-element-header-block.tf-hiding .bhb-subtitle span {
+  animation-name: bhb-text-fade-out;
+  animation-duration: var(--tf-ui-hide-duration);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes bhb-shrink {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+}
+
+@keyframes bhb-text-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

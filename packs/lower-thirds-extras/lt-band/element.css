@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,700;1,700&display=swap');
+
+#tf-element-lt-band {
+  --tf-ui-accent-color: #E5A100;
+  --tf-ui-left: 60px;
+  --tf-ui-bottom: 120px;
+  --tf-ui-show-duration: 600ms;
+  --tf-ui-hide-duration: 500ms;
+  --tf-ui-onscreen-duration: 8600ms;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 1080px;
+  pointer-events: none;
+}
+
+/* ---- layout ---- */
+.lba-lower {
+  position: absolute;
+  left: var(--tf-ui-left);
+  bottom: var(--tf-ui-bottom);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.lba-name {
+  display: block;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 70px;
+  color: #FFFFFF;
+  line-height: 1;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation-name: lba-name-in, lba-name-out;
+  animation-duration: var(--tf-ui-show-duration), var(--tf-ui-hide-duration);
+  animation-delay: 0ms, var(--tf-ui-onscreen-duration);
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1), cubic-bezier(0.55, 0, 1, 0.45);
+}
+
+.lba-band {
+  display: flex;
+  align-items: center;
+  background: var(--tf-ui-accent-color);
+  height: 34px;
+  min-width: 200px;
+  padding: 0 10px;
+  transform-origin: left center;
+  transform: scaleX(0);
+  animation-name: lba-band-in, lba-band-out;
+  animation-duration: var(--tf-ui-show-duration), var(--tf-ui-hide-duration);
+  animation-delay: 100ms, var(--tf-ui-onscreen-duration);
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1), cubic-bezier(0.55, 0, 1, 0.45);
+  overflow: hidden;
+}
+
+.lba-title {
+  font-family: 'Barlow Condensed', Arial Narrow, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1A1A1A;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  animation-name: lba-title-in, lba-title-out;
+  animation-duration: var(--tf-ui-show-duration), var(--tf-ui-hide-duration);
+  animation-delay: 260ms, var(--tf-ui-onscreen-duration);
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out, ease-in;
+}
+
+/* ---- .tf-hiding overrides ---- */
+#tf-element-lt-band.tf-hiding .lba-title {
+  animation-name: lba-title-out;
+  animation-duration: var(--tf-ui-hide-duration);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+#tf-element-lt-band.tf-hiding .lba-band {
+  animation-name: lba-band-out;
+  animation-duration: var(--tf-ui-hide-duration);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+#tf-element-lt-band.tf-hiding .lba-name {
+  animation-name: lba-name-out;
+  animation-duration: var(--tf-ui-hide-duration);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+/* ---- @keyframes ---- */
+@keyframes lba-name-in {
+  0%   { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes lba-name-out {
+  0%   { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-16px); }
+}
+
+@keyframes lba-band-in {
+  0%   { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+@keyframes lba-band-out {
+  0%   { transform: scaleX(1); }
+  100% { transform: scaleX(0); }
+}
+
+@keyframes lba-title-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes lba-title-out {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}

@@ -1,0 +1,164 @@
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                    TITLE-SHOWCASE PACK - QUICK REFERENCE                       ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+PACK LOCATION: /workspace/packs/title-showcase/
+
+┌─ ELEMENT 1: GRADIENT SLIDE ─────────────────────────────────────────────────────┐
+│ Slug: gradient-slide                                                             │
+│ Animation: Elastic slide-in from left + staggered subtitle                      │
+│ Duration: 1200ms show / 800ms hide                                              │
+│ Position: Bottom-left (40px left, 80px bottom)                                  │
+│ Colors: Pink gradient (#ff006e → #00d9ff), yellow accent (#ffbe0b)             │
+│ Text Fields: main-title, subtitle                                               │
+│ Files: element.html (413B), element.css (2.1KB)                                │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ ELEMENT 2: TYPEWRITER EFFECT ──────────────────────────────────────────────────┐
+│ Slug: typewriter-effect                                                          │
+│ Animation: Scale-in + pulsing indicator + staggered text reveal                 │
+│ Duration: 2000ms show / 600ms hide                                              │
+│ Position: Top-right (50px right, 100px top)                                     │
+│ Colors: Dark background, neon green accent (#00ff88), white text                │
+│ Text Fields: label, main-text                                                   │
+│ Files: element.html (445B), element.css (2.8KB)                                │
+│ Special: Monospace font (Courier New), pulsing dot animation                    │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ ELEMENT 3: EXPANDING BAR ──────────────────────────────────────────────────────┐
+│ Slug: expanding-bar                                                              │
+│ Animation: Horizontal bar expansion + staggered content reveals                 │
+│ Duration: 1400ms show / 700ms hide                                              │
+│ Position: Center-bottom (120px bottom, adjustable x-offset)                     │
+│ Colors: Dark blue gradient, red accent (#ff1744), white text                    │
+│ Text Fields: prefix, title, suffix                                              │
+│ Files: element.html (456B), element.css (3.2KB)                                │
+│ Special: Full-width bar, directional animations (left→right)                    │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ ELEMENT 4: ROTATING PERSPECTIVE ───────────────────────────────────────────────┐
+│ Slug: rotating-perspective                                                       │
+│ Animation: 3D rotation + gradient background scale + expanding accent line      │
+│ Duration: 1600ms show / 900ms hide                                              │
+│ Position: Top-left (60px left, 150px top)                                       │
+│ Colors: Purple gradient (#667eea → #764ba2), cyan accent (#00d9ff)             │
+│ Text Fields: badge, headline                                                    │
+│ Files: element.html (468B), element.css (3.1KB)                                │
+│ Special: 3D perspective transforms, expanding accent line                       │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                         DOCK CONTROLS SUMMARY                                  ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+GRADIENT SLIDE:
+  Colors: --tf-ui-gradient-start, --tf-ui-gradient-end, --tf-ui-accent-color
+  Timing: --tf-ui-show-duration (1200ms), --tf-ui-hide-duration (800ms)
+  Size: --tf-ui-font-size-primary (48px), --tf-ui-font-size-secondary (24px)
+  Position: --tf-ui-left (40px), --tf-ui-bottom (80px)
+
+TYPEWRITER EFFECT:
+  Colors: --tf-ui-primary-color, --tf-ui-accent-color, --tf-ui-background-color
+  Timing: --tf-ui-show-duration (2000ms), --tf-ui-hide-duration (600ms)
+  Size: --tf-ui-font-size-primary (42px), --tf-ui-font-size-secondary (12px)
+  Position: --tf-ui-right (50px), --tf-ui-top (100px)
+
+EXPANDING BAR:
+  Colors: --tf-ui-primary-color, --tf-ui-accent-color, --tf-ui-background-color
+  Timing: --tf-ui-show-duration (1400ms), --tf-ui-hide-duration (700ms)
+  Size: --tf-ui-font-size-primary (38px), --tf-ui-font-size-secondary (11px)
+  Position: --tf-ui-bottom (120px), --tf-ui-x-offset (0px)
+
+ROTATING PERSPECTIVE:
+  Colors: --tf-ui-gradient-start, --tf-ui-gradient-end, --tf-ui-accent-color
+  Timing: --tf-ui-show-duration (1600ms), --tf-ui-hide-duration (900ms)
+  Size: --tf-ui-font-size-primary (44px), --tf-ui-font-size-secondary (10px)
+  Position: --tf-ui-left (60px), --tf-ui-top (150px)
+
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                         ANIMATION TECHNIQUES                                   ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+TRANSFORMS:
+  • translateX() - Horizontal sliding
+  • translateY() - Vertical sliding
+  • scaleX() - Horizontal expansion
+  • scaleY() - Vertical scaling
+  • scale() - Uniform scaling
+  • rotateY() / rotateX() - 3D rotation
+
+EASING:
+  • cubic-bezier(0.34, 1.56, 0.64, 1) - Elastic bounce
+  • cubic-bezier(0.25, 0.46, 0.45, 0.94) - Smooth ease
+  • cubic-bezier(0.36, 0, 0.66, -0.56) - Reverse elastic
+  • ease-out / ease-in - Standard easing
+
+EFFECTS:
+  • Gradient text with -webkit-background-clip
+  • Text glow with text-shadow
+  • Pulsing animations with @keyframes
+  • 3D perspective with perspective property
+  • Staggered animations with animation-delay
+
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                         TESTING QUICK CHECKLIST                                ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+□ Load pack in TitleFlow dock
+□ Verify all 4 elements appear
+□ Test Show button on each element
+□ Test Hide button on each element
+□ Edit text fields in dock
+□ Adjust color controls
+□ Adjust duration controls
+□ Adjust position controls
+□ Test Reset button
+□ Test rapid show/hide sequences
+□ Verify verbose text renders correctly
+□ Check for animation glitches
+
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                         VERBOSE DEFAULT TEXT                                   ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+GRADIENT SLIDE:
+  Title: "Breaking News: Revolutionary Technology Transforms Industry Standards"
+  Subtitle: "Discover the latest innovations reshaping the future of digital transformation"
+
+TYPEWRITER EFFECT:
+  Label: "LIVE UPDATE"
+  Text: "Comprehensive Analysis: Market Dynamics and Strategic Opportunities in Global Economics"
+
+EXPANDING BAR:
+  Prefix: "FEATURED"
+  Title: "Innovative Solutions Driving Unprecedented Growth and Market Expansion Worldwide"
+  Suffix: "→"
+
+ROTATING PERSPECTIVE:
+  Badge: "EXCLUSIVE COVERAGE"
+  Headline: "Transformative Industry Insights: Comprehensive Analysis of Emerging Technological Paradigms"
+
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                         FILE STRUCTURE                                         ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+/workspace/packs/title-showcase/
+├── README.md (6.7 KB)
+├── gradient-slide/
+│   ├── element.html
+│   └── element.css
+├── typewriter-effect/
+│   ├── element.html
+│   └── element.css
+├── expanding-bar/
+│   ├── element.html
+│   └── element.css
+└── rotating-perspective/
+    ├── element.html
+    └── element.css
+
+Total: 9 files, 34 KB
+
+═══════════════════════════════════════════════════════════════════════════════════
+Created: April 15, 2026 | TitleFlow v0.4.3b | Status: ✅ Complete
+═══════════════════════════════════════════════════════════════════════════════════

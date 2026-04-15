@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@700&family=Barlow+Condensed:wght@700&display=swap');
+
+#tf-element-live-badge {
+  --tf-ui-badge-color: #FFD600;
+  --tf-ui-text-color: #0A0A0A;
+  --tf-ui-light-color: #FF0000;
+  --tf-ui-blink-duration: 1500ms;
+  --tf-ui-light-diameter: 10px;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 1080px;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+  transform-origin: 1770px 79px;
+}
+
+#tf-element-live-badge.tf-fired {
+  opacity: 1;
+  transform: scale(1);
+}
+
+#tf-element-live-badge.tf-hiding {
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 300ms ease-in, transform 300ms ease-in;
+}
+
+.lb-badge {
+  position: absolute;
+  left: 1680px;
+  top: 48px;
+  width: 180px;
+  height: 62px;
+  background: var(--tf-ui-badge-color);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 12px;
+}
+
+.lb-light {
+  width: var(--tf-ui-light-diameter);
+  height: var(--tf-ui-light-diameter);
+  border-radius: 50%;
+  background: var(--tf-ui-light-color);
+  margin-right: 8px;
+  box-shadow: 0 0 4px rgba(255, 0, 0, 0.6);
+  animation: lb-blink var(--tf-ui-blink-duration) ease-in-out infinite;
+}
+
+.lb-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--tf-ui-text-color);
+  letter-spacing: 0.12em;
+  line-height: 1;
+}
+
+@keyframes lb-blink {
+  0%, 100%   { opacity: 1; }
+  50%        { opacity: 0.3; }
+}

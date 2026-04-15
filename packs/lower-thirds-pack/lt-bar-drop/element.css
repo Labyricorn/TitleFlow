@@ -1,0 +1,101 @@
+@import url(https://fonts.googleapis.com/css?family=Arimo:400,700);
+
+.lt-bar-drop {
+  position: absolute;
+  bottom: var(--tf-ui-bottom, 120px);
+  left:   var(--tf-ui-left,   100px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Arimo', sans-serif;
+  text-transform: uppercase;
+  line-height: 1;
+
+  --tf-ui-left:   100px;
+  --tf-ui-bottom: 120px;
+  --tf-ui-accent-color: #cf4c4e;
+  --tf-ui-text-color: #ffffff;
+  --tf-ui-show-duration: 1800ms;
+  --tf-ui-onscreen-duration: 6800ms; /* fire→hide delay: show-duration + desired hold */
+  --tf-ui-hide-duration: 600ms;
+}
+
+.lbd-name-mask {
+  overflow: hidden;
+  font-size: 2.8em;
+  height: 1em;
+  position: relative;
+}
+
+.lbd-name-mask span {
+  display: block;
+  white-space: nowrap;
+  color: var(--tf-ui-text-color);
+  font-weight: 700;
+  animation-name: lbd-text-in, lbd-text-out;
+  animation-duration: var(--tf-ui-show-duration, 1800ms), var(--tf-ui-hide-duration, 600ms);
+  animation-timing-function: ease-out, ease;
+  animation-delay: 0ms, var(--tf-ui-onscreen-duration, 6800ms);
+  animation-iteration-count: 1, 1;
+  animation-fill-mode: forwards;
+}
+
+.lbd-stroke-mask {
+  overflow: hidden;
+  height: 2.4em;
+}
+
+.lbd-stroke {
+  width: 0.38em;
+  height: 2.4em;
+  background-color: var(--tf-ui-accent-color);
+  animation-name: lbd-stroke-in, lbd-stroke-out;
+  animation-duration: var(--tf-ui-show-duration, 1800ms), var(--tf-ui-hide-duration, 600ms);
+  animation-timing-function: ease-out, ease;
+  animation-delay: 0ms, var(--tf-ui-onscreen-duration, 6800ms);
+  animation-iteration-count: 1, 1;
+  animation-fill-mode: forwards;
+}
+
+/* .tf-hiding — immediate on-demand hide overrides the timed chain */
+#tf-element-lt-bar-drop.tf-hiding .lbd-name-mask span {
+  animation-name: lbd-text-out;
+  animation-duration: var(--tf-ui-hide-duration, 600ms);
+  animation-timing-function: ease;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+#tf-element-lt-bar-drop.tf-hiding .lbd-stroke {
+  animation-name: lbd-stroke-out;
+  animation-duration: var(--tf-ui-hide-duration, 600ms);
+  animation-timing-function: ease;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes lbd-stroke-in {
+  0%   { transform: translateY(-100%); }
+  30%  { transform: translateY(-100%); }
+  60%  { transform: translateY(0); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes lbd-stroke-out {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-100%); }
+}
+
+@keyframes lbd-text-in {
+  0%   { transform: translateY(-100%); }
+  50%  { transform: translateY(-100%); }
+  80%  { transform: translateY(0); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes lbd-text-out {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-100%); }
+}

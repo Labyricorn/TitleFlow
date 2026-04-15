@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,700;1,700&display=swap');
+
+#tf-element-lt-panel {
+  --tf-ui-accent-color: #E5A100;
+  --tf-ui-left: 60px;
+  --tf-ui-bottom: 120px;
+  --tf-ui-show-duration: 600ms;
+  --tf-ui-hide-duration: 500ms;
+  --tf-ui-onscreen-duration: 8600ms;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 1080px;
+  pointer-events: none;
+}
+
+/* ---- layout ---- */
+.lpn-lower {
+  position: absolute;
+  left: var(--tf-ui-left);
+  bottom: var(--tf-ui-bottom);
+}
+
+.lpn-panel {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  background: rgba(10, 10, 10, 0.88);
+  padding: 16px 24px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation-name: lpn-panel-in, lpn-panel-out;
+  animation-duration: var(--tf-ui-show-duration), var(--tf-ui-hide-duration);
+  animation-delay: 0ms, var(--tf-ui-onscreen-duration);
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1), cubic-bezier(0.55, 0, 1, 0.45);
+}
+
+.lpn-name {
+  display: block;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 64px;
+  color: #FFFFFF;
+  line-height: 1;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  opacity: 0;
+  animation-name: lpn-name-in, lpn-name-out;
+  animation-duration: var(--tf-ui-show-duration), var(--tf-ui-hide-duration);
+  animation-delay: 120ms, var(--tf-ui-onscreen-duration);
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out, ease-in;
+}
+
+.lpn-divider {
+  height: 1px;
+  width: 0%;
+  background: var(--tf-ui-accent-color);
+  transform-origin: left center;
+  animation-name: lpn-div-in, lpn-div-out;
+  animation-duration: var(--tf-ui-show-duration), var(--tf-ui-hide-duration);
+  animation-delay: 220ms, var(--tf-ui-onscreen-duration);
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1), cubic-bezier(0.55, 0, 1, 0.45);
+}
+
+.lpn-title {
+  display: block;
+  font-family: 'Barlow Condensed', Arial Narrow, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  animation-name: lpn-title-in, lpn-title-out;
+  animation-duration: var(--tf-ui-show-duration), var(--tf-ui-hide-duration);
+  animation-delay: 340ms, var(--tf-ui-onscreen-duration);
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out, ease-in;
+}
+
+/* ---- .tf-hiding overrides ---- */
+#tf-element-lt-panel.tf-hiding .lpn-title {
+  animation-name: lpn-title-out;
+  animation-duration: var(--tf-ui-hide-duration);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+#tf-element-lt-panel.tf-hiding .lpn-divider {
+  animation-name: lpn-div-out;
+  animation-duration: var(--tf-ui-hide-duration);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+#tf-element-lt-panel.tf-hiding .lpn-name {
+  animation-name: lpn-name-out;
+  animation-duration: var(--tf-ui-hide-duration);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+#tf-element-lt-panel.tf-hiding .lpn-panel {
+  animation-name: lpn-panel-out;
+  animation-duration: var(--tf-ui-hide-duration);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+/* ---- @keyframes ---- */
+@keyframes lpn-panel-in {
+  0%   { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes lpn-panel-out {
+  0%   { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(16px); }
+}
+
+@keyframes lpn-name-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes lpn-name-out {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes lpn-div-in {
+  0%   { width: 0%; }
+  100% { width: 100%; }
+}
+@keyframes lpn-div-out {
+  0%   { width: 100%; }
+  100% { width: 0%; }
+}
+
+@keyframes lpn-title-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes lpn-title-out {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}

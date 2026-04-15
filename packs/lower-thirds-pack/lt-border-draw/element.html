@@ -1,0 +1,28 @@
+<button data-tf-fire="show" data-tf-label="Show" style="display:none"></button>
+<button data-tf-fire="hide" data-tf-label="Hide" style="display:none"></button>
+<div class="lt-border-draw">
+  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+    <defs>
+      <clipPath id="ltbd-mask-br">
+        <rect class="ltbd-clip" x="70%" y="0" width="30%" height="100%"/>
+      </clipPath>
+      <clipPath id="ltbd-mask-top">
+        <rect class="ltbd-clip" x="0" y="0" width="100%" height="100%"/>
+      </clipPath>
+      <clipPath id="ltbd-mask-bl">
+        <rect class="ltbd-clip" x="0" y="0" width="30%" height="100%"/>
+      </clipPath>
+    </defs>
+    <line class="ltbd-bottom-right" x1="70%" y1="100%" x2="100%" y2="100%"/>
+    <line class="ltbd-right"        x1="100%" y1="0"    x2="100%" y2="100%"/>
+    <line class="ltbd-top"          x1="0"    y1="0"    x2="100%" y2="0"/>
+    <line class="ltbd-left"         x1="0"    y1="0"    x2="0"    y2="100%"/>
+    <line class="ltbd-bottom-left"  x1="0"    y1="100%" x2="30%"  y2="100%"/>
+  </svg>
+  <div class="ltbd-name-mask">
+    <span data-tf-bind="name" data-tf-label="Name">Nathan Fillion</span>
+  </div>
+  <div class="ltbd-title-mask">
+    <span data-tf-bind="title" data-tf-label="Title">Director</span>
+  </div>
+</div>

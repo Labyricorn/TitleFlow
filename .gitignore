@@ -1,0 +1,35 @@
+# Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Build artifacts
+/dist/
+/build/
+*.o
+*.a
+
+# Temp files
+.abacusaiTempFiles/
+*.tmp
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.iml
+.DS_Store
+
+# Local settings (but keep example configs)
+.claude/settings.local.json
+
+# OBS cache
+*.cache
+.obs/
+
+# Go
+vendor/
+go.work

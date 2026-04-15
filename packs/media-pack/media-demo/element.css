@@ -1,0 +1,144 @@
+.media-demo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Published controls */
+  --tf-ui-image-size: 200px;
+  --tf-ui-accent-color: #58a6ff;
+  --tf-ui-background-color: rgba(0, 0, 0, 0.85);
+  --tf-ui-text-color: #ffffff;
+  --tf-ui-show-duration: 600ms;
+  --tf-ui-hide-duration: 600ms;
+}
+
+.media-demo__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 40px;
+  background: var(--tf-ui-background-color);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.media-demo__image-wrapper {
+  width: var(--tf-ui-image-size);
+  height: var(--tf-ui-image-size);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(88, 166, 255, 0.2);
+}
+
+.media-demo__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.media-demo__caption {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--tf-ui-text-color);
+  font-family: system-ui, sans-serif;
+  text-align: center;
+}
+
+.media-demo__sound-btn {
+  padding: 12px 24px;
+  background: var(--tf-ui-accent-color);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 200ms ease;
+  font-family: system-ui, sans-serif;
+}
+
+.media-demo__sound-btn:hover {
+  background: light-color(var(--tf-ui-accent-color) 20%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(88, 166, 255, 0.3);
+}
+
+.media-demo__sound-btn:active {
+  transform: translateY(0);
+}
+
+.media-demo__sound-btn-text {
+  pointer-events: none;
+}
+
+.media-demo__sound-feedback {
+  width: 0;
+  height: 0;
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--tf-ui-accent-color), transparent);
+  opacity: 0;
+}
+
+/* Show animation: slide in from left + fade in */
+#tf-element-media-demo.tf-fired .media-demo__container {
+  animation-name: media-slide-in;
+  animation-duration: var(--tf-ui-show-duration, 600ms);
+  animation-timing-function: ease;
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes media-slide-in {
+  from {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Hide animation: slide out to right + fade out */
+#tf-element-media-demo.tf-hiding .media-demo__container {
+  animation-name: media-slide-out;
+  animation-duration: var(--tf-ui-hide-duration, 600ms);
+  animation-timing-function: ease;
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes media-slide-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+}
+
+/* Pulse animation for sound playback feedback */
+@keyframes media-pulse {
+  0% {
+    width: 40px;
+    height: 40px;
+    opacity: 0.8;
+  }
+  100% {
+    width: 120px;
+    height: 120px;
+    opacity: 0;
+  }
+}

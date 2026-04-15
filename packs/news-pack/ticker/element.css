@@ -1,0 +1,121 @@
+.ticker {
+  position: absolute;
+  bottom: var(--tf-ui-bottom, 0px);
+  left: 0;
+  width: 1920px;
+  height: 56px;
+  display: flex;
+  align-items: stretch;
+
+  /* Published controls — exposed in the dock and editor inspector */
+  --tf-ui-bottom: 0px;
+  --tf-ui-accent-color: #e63946;
+  --tf-ui-background-color: #0d1117;
+  --tf-ui-text-color: #f1faee;
+  --tf-ui-font-size: 22px;
+  --tf-ui-scroll-duration: 20000ms; /* full right-to-left pass duration */
+  --tf-ui-hide-duration: 600ms;
+}
+
+.ticker__label {
+  flex: 0 0 auto;
+  padding: 0 24px;
+  background: var(--tf-ui-accent-color);
+  color: #ffffff;
+  font-family: system-ui, sans-serif;
+  font-size: var(--tf-ui-font-size);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.ticker__track {
+  flex: 1;
+  overflow: hidden;
+  background: var(--tf-ui-background-color);
+  position: relative;
+}
+
+.ticker__text {
+  position: absolute;
+  top: 50%;
+  white-space: nowrap;
+  color: var(--tf-ui-text-color);
+  font-family: system-ui, sans-serif;
+  font-size: var(--tf-ui-font-size);
+  font-weight: 400;
+  padding: 0 40px;
+
+  /*
+   * Scroll animation: text travels from off-screen right to off-screen left.
+   * translateY(-50%) centres the text vertically; translateX drives the scroll.
+   * animation-play-state starts paused so the ticker is static until fired.
+   * The .tf-fired ancestor rule below enables it when the element is live.
+   * The fire handler's DOM reinsertion resets the animation on every Fire,
+   * so each pass always starts from the right edge.
+   */
+  animation-name: ticker-scroll;
+  animation-duration: var(--tf-ui-scroll-duration, 20000ms);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: none;
+  animation-play-state: paused;
+}
+
+/*
+ * When the element wrapper has .tf-fired, apply entrance animation to the ticker bar,
+ * then start the scroll with a delay so it begins after the entrance completes.
+ * Specificity: two classes (0,2,0) — beats the single-class paused rule above.
+ */
+#tf-element-ticker.tf-fired .ticker {
+  animation-name: ticker-slide-in;
+  animation-duration: var(--tf-ui-hide-duration, 600ms);
+  animation-timing-function: ease;
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+.tf-fired .ticker__text {
+  animation-play-state: running;
+  animation-delay: var(--tf-ui-hide-duration, 600ms);
+}
+
+/*
+ * .tf-firing — entrance animation for show.
+ * Slides the ticker bar up into view while fading in.
+ * This animation completes before the scroll begins (see animation-delay above).
+ */
+@keyframes ticker-slide-in {
+  from { transform: translateY(56px);  opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+/*
+ * .tf-hiding — immediate on-demand hide triggered by element.js.
+ * Slides the ticker bar down off the bottom edge while fading out.
+ * Scroll animation is paused during exit so text doesn't keep moving.
+ */
+#tf-element-ticker.tf-hiding .ticker {
+  animation-name: ticker-slide-out;
+  animation-duration: var(--tf-ui-hide-duration, 600ms);
+  animation-timing-function: ease;
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+#tf-element-ticker.tf-hiding .ticker__text {
+  animation-play-state: paused;
+}
+
+@keyframes ticker-slide-out {
+  from { transform: translateY(0);    opacity: 1; }
+  to   { transform: translateY(56px); opacity: 0; }
+}
+
+@keyframes ticker-scroll {
+  from { transform: translateX(1920px)  translateY(-50%); }
+  to   { transform: translateX(-100%)   translateY(-50%); }
+}

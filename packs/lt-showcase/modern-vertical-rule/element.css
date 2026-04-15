@@ -1,0 +1,133 @@
+.lt-modern-vertical-rule {
+  --tf-ui-left: 20px;
+  --tf-ui-bottom: 40px;
+  --tf-ui-show-duration: 1000ms;
+  --tf-ui-hide-duration: 700ms;
+  --tf-ui-line-color: #FF00FF;
+  --tf-ui-line-width: 3px;
+  --tf-ui-text-color: #ffffff;
+  --tf-ui-font-size-name: 44px;
+  --tf-ui-font-size-subtitle: 14px;
+
+  position: fixed;
+  left: var(--tf-ui-left);
+  bottom: var(--tf-ui-bottom);
+  font-family: 'Inter', sans-serif;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.mvr-line {
+  width: var(--tf-ui-line-width);
+  height: 0;
+  background-color: var(--tf-ui-line-color);
+  flex-shrink: 0;
+}
+
+.mvr-content {
+  overflow: hidden;
+  flex: 1;
+}
+
+.mvr-name {
+  font-size: var(--tf-ui-font-size-name);
+  font-weight: 700;
+  color: var(--tf-ui-text-color);
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  margin-bottom: 4px;
+  overflow: hidden;
+}
+
+.mvr-name span {
+  display: block;
+  opacity: 0;
+}
+
+.mvr-subtitle {
+  font-size: var(--tf-ui-font-size-subtitle);
+  font-weight: 300;
+  color: var(--tf-ui-text-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  overflow: hidden;
+}
+
+.mvr-subtitle span {
+  display: block;
+  opacity: 0;
+}
+
+/* Show animations */
+#tf-element-modern-vertical-rule.tf-fired .mvr-line {
+  animation: mvr-line-grow var(--tf-ui-show-duration) ease-out forwards;
+}
+
+#tf-element-modern-vertical-rule.tf-fired .mvr-name span {
+  animation: mvr-wipe-in 0.6s ease-out forwards;
+  animation-delay: 0.4s;
+}
+
+#tf-element-modern-vertical-rule.tf-fired .mvr-subtitle span {
+  animation: mvr-wipe-in 0.5s ease-out forwards;
+  animation-delay: 0.6s;
+}
+
+@keyframes mvr-line-grow {
+  from {
+    height: 0;
+  }
+  to {
+    height: 80px;
+  }
+}
+
+@keyframes mvr-wipe-in {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Hide animations */
+#tf-element-modern-vertical-rule.tf-hiding .mvr-line {
+  animation-name: mvr-line-shrink;
+  animation-duration: var(--tf-ui-hide-duration);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+#tf-element-modern-vertical-rule.tf-hiding .mvr-name span,
+#tf-element-modern-vertical-rule.tf-hiding .mvr-subtitle span {
+  animation-name: mvr-wipe-out;
+  animation-duration: var(--tf-ui-hide-duration);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes mvr-line-shrink {
+  from {
+    height: 80px;
+  }
+  to {
+    height: 0;
+  }
+}
+
+@keyframes mvr-wipe-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}

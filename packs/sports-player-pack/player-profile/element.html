@@ -1,0 +1,70 @@
+<button data-tf-fire="show" data-tf-label="Show Player Profile" style="display:none"></button>
+<button data-tf-fire="hide" data-tf-label="Hide Player Profile" style="display:none"></button>
+
+<div class="player-profile">
+  <div class="player-profile__backplate"></div>
+
+  <div class="player-profile__hero">
+    <div class="player-profile__silhouette">
+      <div class="player-profile__head"></div>
+      <div class="player-profile__torso"></div>
+      <div class="player-profile__arm player-profile__arm--front"></div>
+      <div class="player-profile__arm player-profile__arm--rear"></div>
+    </div>
+    <div class="player-profile__hero-label"
+         data-tf-bind="hero-label"
+         data-tf-label="Hero Label">PLAYER</div>
+  </div>
+
+  <div class="player-profile__stats">
+    <div class="player-profile__stat-row">
+      <span class="player-profile__stat-key">DEBUT</span>
+      <span class="player-profile__stat-value"
+            data-tf-bind="debut"
+            data-tf-label="Debut">2009</span>
+    </div>
+    <div class="player-profile__stat-row">
+      <span class="player-profile__stat-key">SEASON</span>
+      <span class="player-profile__stat-value"
+            data-tf-bind="season"
+            data-tf-label="Season">12</span>
+    </div>
+    <div class="player-profile__stat-row">
+      <span class="player-profile__stat-key">WORLD WINS</span>
+      <span class="player-profile__stat-value"
+            data-tf-bind="world-wins"
+            data-tf-label="World Wins">9</span>
+    </div>
+    <div class="player-profile__stat-row">
+      <span class="player-profile__stat-key">TEAM</span>
+      <span class="player-profile__stat-value"
+            data-tf-bind="team"
+            data-tf-label="Team">RED BULL</span>
+    </div>
+    <div class="player-profile__stat-row">
+      <span class="player-profile__stat-key">GP RACES</span>
+      <span class="player-profile__stat-value"
+            data-tf-bind="gp-races"
+            data-tf-label="GP Races">10</span>
+    </div>
+    <div class="player-profile__stat-row">
+      <span class="player-profile__stat-key">GP WINS</span>
+      <span class="player-profile__stat-value"
+            data-tf-bind="gp-wins"
+            data-tf-label="GP Wins">27</span>
+    </div>
+  </div>
+
+  <div class="player-profile__nameplate">
+    <div class="player-profile__flag"
+         data-tf-bind="flag"
+         data-tf-label="Flag">NL</div>
+    <div class="player-profile__name"
+         data-tf-bind="name"
+         data-tf-label="Name">ALEXANDER VITEEN</div>
+  </div>
+
+  <div class="player-profile__strap"
+       data-tf-bind="strap"
+       data-tf-label="Strap">WORLD CHAMPION OF 2009 YEAR</div>
+</div>

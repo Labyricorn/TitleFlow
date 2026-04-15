@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,700;1,700&display=swap');
+
+#tf-element-lt-solid {
+  --tf-ui-accent-color: #E5A100;
+  --tf-ui-left: 60px;
+  --tf-ui-bottom: 120px;
+  --tf-ui-show-duration: 600ms;
+  --tf-ui-hide-duration: 500ms;
+  --tf-ui-onscreen-duration: 8600ms;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 1080px;
+  pointer-events: none;
+}
+
+/* ---- layout ---- */
+.lso-lower {
+  position: absolute;
+  left: var(--tf-ui-left);
+  bottom: var(--tf-ui-bottom);
+  overflow: hidden;
+}
+
+.lso-block {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: var(--tf-ui-accent-color);
+  padding: 12px 24px;
+  transform: translateX(-110%);
+  animation-name: lso-block-in, lso-block-out;
+  animation-duration: var(--tf-ui-show-duration), var(--tf-ui-hide-duration);
+  animation-delay: 0ms, var(--tf-ui-onscreen-duration);
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1), cubic-bezier(0.55, 0, 1, 0.45);
+}
+
+.lso-name {
+  display: block;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 56px;
+  color: #FFFFFF;
+  line-height: 1;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  opacity: 0;
+  animation-name: lso-text-in, lso-text-out;
+  animation-duration: var(--tf-ui-show-duration), var(--tf-ui-hide-duration);
+  animation-delay: 200ms, var(--tf-ui-onscreen-duration);
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out, ease-in;
+}
+
+.lso-title {
+  display: block;
+  font-family: 'Barlow Condensed', Arial Narrow, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin-top: 2px;
+  opacity: 0;
+  animation-name: lso-text-in, lso-text-out;
+  animation-duration: var(--tf-ui-show-duration), var(--tf-ui-hide-duration);
+  animation-delay: 270ms, var(--tf-ui-onscreen-duration);
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out, ease-in;
+}
+
+/* ---- .tf-hiding overrides ---- */
+#tf-element-lt-solid.tf-hiding .lso-title {
+  animation-name: lso-text-out;
+  animation-duration: var(--tf-ui-hide-duration);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+#tf-element-lt-solid.tf-hiding .lso-name {
+  animation-name: lso-text-out;
+  animation-duration: var(--tf-ui-hide-duration);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+#tf-element-lt-solid.tf-hiding .lso-block {
+  animation-name: lso-block-out;
+  animation-duration: var(--tf-ui-hide-duration);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+/* ---- @keyframes ---- */
+@keyframes lso-block-in {
+  0%   { transform: translateX(-110%); }
+  100% { transform: translateX(0); }
+}
+@keyframes lso-block-out {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-110%); }
+}
+
+@keyframes lso-text-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes lso-text-out {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}

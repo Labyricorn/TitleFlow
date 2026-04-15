@@ -1,0 +1,153 @@
+.lt-interactive-toggle-pill {
+  --tf-ui-left: 20px;
+  --tf-ui-bottom: 40px;
+  --tf-ui-show-duration: 1100ms;
+  --tf-ui-hide-duration: 800ms;
+  --tf-ui-pill-color-start: #FF6B35;
+  --tf-ui-pill-color-end: #FF0000;
+  --tf-ui-button-color: #FFD700;
+  --tf-ui-button-icon-color: #000000;
+  --tf-ui-text-color: #ffffff;
+  --tf-ui-font-size-name: 40px;
+  --tf-ui-font-size-subtitle: 13px;
+
+  position: fixed;
+  left: var(--tf-ui-left);
+  bottom: var(--tf-ui-bottom);
+  font-family: 'Poppins', sans-serif;
+  z-index: 1000;
+}
+
+.itp-pill {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(90deg, var(--tf-ui-pill-color-start), var(--tf-ui-pill-color-end));
+  border-radius: 50px;
+  padding: 8px 8px 8px 8px;
+  gap: 12px;
+  width: fit-content;
+  overflow: hidden;
+}
+
+.itp-button {
+  width: 36px;
+  height: 36px;
+  background-color: var(--tf-ui-button-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--tf-ui-button-icon-color);
+  flex-shrink: 0;
+  transform: translateX(-100px);
+}
+
+.itp-bolt {
+  width: 16px;
+  height: 16px;
+}
+
+.itp-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-right: 16px;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.itp-name {
+  font-size: var(--tf-ui-font-size-name);
+  font-weight: 700;
+  color: var(--tf-ui-text-color);
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+}
+
+.itp-name span {
+  display: block;
+}
+
+.itp-subtitle {
+  font-size: var(--tf-ui-font-size-subtitle);
+  font-weight: 500;
+  color: var(--tf-ui-text-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  opacity: 0;
+}
+
+.itp-subtitle span {
+  display: block;
+}
+
+/* Show animations */
+#tf-element-interactive-toggle-pill.tf-fired .itp-button {
+  animation: itp-button-slide var(--tf-ui-show-duration) cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+#tf-element-interactive-toggle-pill.tf-fired .itp-name {
+  animation: itp-text-fade 0.6s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+#tf-element-interactive-toggle-pill.tf-fired .itp-subtitle {
+  animation: itp-text-fade 0.5s ease-out forwards;
+  animation-delay: 0.7s;
+}
+
+@keyframes itp-button-slide {
+  from {
+    transform: translateX(-100px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes itp-text-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Hide animations */
+#tf-element-interactive-toggle-pill.tf-hiding .itp-button {
+  animation-name: itp-button-slide-back;
+  animation-duration: var(--tf-ui-hide-duration);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+#tf-element-interactive-toggle-pill.tf-hiding .itp-name,
+#tf-element-interactive-toggle-pill.tf-hiding .itp-subtitle {
+  animation-name: itp-text-fade-out;
+  animation-duration: var(--tf-ui-hide-duration);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes itp-button-slide-back {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100px);
+  }
+}
+
+@keyframes itp-text-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

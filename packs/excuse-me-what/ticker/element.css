@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@700&family=Barlow+Condensed:wght@700&display=swap');
+
+#tf-element-ticker {
+  --tf-ui-scroll-duration: 25000ms;
+  --tf-ui-hide-duration: 400ms;
+  --tf-ui-accent-color: #E8002A;
+  --tf-ui-text-color: #F5F0E8;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 1080px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(72px);
+  transition: opacity 400ms ease, transform 400ms ease;
+}
+
+#tf-element-ticker.tf-fired {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#tf-element-ticker.tf-hiding {
+  opacity: 0;
+  transform: translateY(72px);
+  transition: opacity var(--tf-ui-hide-duration) ease, transform var(--tf-ui-hide-duration) ease;
+}
+
+.tk-bar {
+  position: absolute;
+  left: 0;
+  top: 1008px;
+  width: 1920px;
+  height: 72px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.tk-label-badge {
+  flex: 0 0 auto;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  background: var(--tf-ui-accent-color);
+  z-index: 1;
+}
+
+.tk-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #FFD600;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.tk-track {
+  flex: 1 1 auto;
+  background: rgba(10, 10, 10, 0.9);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.tk-scroll {
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+  animation: tk-scroll-left var(--tf-ui-scroll-duration) linear infinite;
+  will-change: transform;
+}
+
+#tf-element-ticker:not(.tf-fired) .tk-scroll {
+  animation-play-state: paused;
+}
+
+@keyframes tk-scroll-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.tk-items {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--tf-ui-text-color);
+  white-space: nowrap;
+  padding-right: 80px;
+  display: inline-block;
+}

@@ -1,0 +1,106 @@
+.lower-third {
+  position: absolute;
+  bottom: var(--tf-ui-bottom, 80px);
+  left:   var(--tf-ui-left,   60px);
+
+  /* Published controls — exposed in the dock and editor inspector */
+  --tf-ui-left:   60px;
+  --tf-ui-bottom: 80px;
+  --tf-ui-accent-color: #58a6ff;
+  --tf-ui-background-color: #0d1117;
+  --tf-ui-name-font-size: 36px;
+  --tf-ui-title-font-size: 22px;
+  --tf-ui-show-duration: 2800ms;
+  --tf-ui-onscreen-duration: 7800ms; /* fire→hide delay: show-duration + desired hold */
+  --tf-ui-hide-duration: 1500ms;
+}
+
+.lower-third__bar {
+  width: 5px;
+  height: 68px;
+  background: var(--tf-ui-accent-color);
+  position: absolute;
+  left: 0;
+  top: 0;
+  /*
+   * Two-animation chain — no calc() needed.
+   * lt-bar-in:  plays immediately for show-duration.
+   * lt-bar-out: starts at onscreen-duration (= show-duration + hold-time).
+   * The gap between the two is held by animation-fill-mode: forwards on lt-bar-in.
+   */
+  animation-name: lt-bar-in, lt-bar-out;
+  animation-duration: var(--tf-ui-show-duration, 2800ms), var(--tf-ui-hide-duration, 1500ms);
+  animation-timing-function: ease, ease;
+  animation-delay: 0ms, var(--tf-ui-onscreen-duration, 7800ms);
+  animation-fill-mode: forwards;
+}
+
+.lower-third__content {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
+  background: var(--tf-ui-background-color);
+  margin-left: 12px;
+  animation-name: lt-content-in, lt-content-out;
+  animation-duration: var(--tf-ui-show-duration, 2800ms), var(--tf-ui-hide-duration, 1500ms);
+  animation-timing-function: ease, ease;
+  animation-delay: 0ms, var(--tf-ui-onscreen-duration, 7800ms);
+  animation-fill-mode: forwards;
+}
+
+.lower-third__name {
+  font-family: system-ui, sans-serif;
+  font-size: var(--tf-ui-name-font-size);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+.lower-third__title {
+  font-family: system-ui, sans-serif;
+  font-size: var(--tf-ui-title-font-size);
+  font-weight: 400;
+  color: var(--tf-ui-accent-color);
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/*
+ * .tf-hiding — immediate on-demand hide, triggered by element.js when the
+ * 'hide' fire event is received. Overrides the timed animation chain with
+ * the out-animations starting immediately (delay: 0ms).
+ */
+#tf-element-lower-third.tf-hiding .lower-third__bar {
+  animation-name: lt-bar-out;
+  animation-duration: var(--tf-ui-hide-duration, 1500ms);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+#tf-element-lower-third.tf-hiding .lower-third__content {
+  animation-name: lt-content-out;
+  animation-duration: var(--tf-ui-hide-duration, 1500ms);
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes lt-bar-in {
+  from { transform: scaleY(0); opacity: 0; }
+  to   { transform: scaleY(1); opacity: 1; }
+}
+
+@keyframes lt-bar-out {
+  from { transform: scaleY(1); opacity: 1; }
+  to   { transform: scaleY(0); opacity: 0; }
+}
+
+@keyframes lt-content-in {
+  from { transform: translateX(-12px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+@keyframes lt-content-out {
+  from { transform: translateX(0);     opacity: 1; }
+  to   { transform: translateX(-12px); opacity: 0; }
+}

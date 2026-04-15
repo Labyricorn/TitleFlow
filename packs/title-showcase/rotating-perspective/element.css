@@ -1,0 +1,231 @@
+.rotating-perspective-container {
+  --tf-ui-show-duration: 1600ms;
+  --tf-ui-hide-duration: 900ms;
+  --tf-ui-primary-color: #ffffff;
+  --tf-ui-accent-color: #00d9ff;
+  --tf-ui-background-color: rgba(20, 20, 40, 0.9);
+  --tf-ui-gradient-start: #667eea;
+  --tf-ui-gradient-end: #764ba2;
+  --tf-ui-font-size-primary: 44px;
+  --tf-ui-font-size-secondary: 10px;
+  --tf-ui-left: 60px;
+  --tf-ui-top: 150px;
+  
+  position: fixed;
+  left: var(--tf-ui-left);
+  top: var(--tf-ui-top);
+  z-index: 100;
+  perspective: 1200px;
+}
+
+.rotating-perspective-wrapper {
+  opacity: 0;
+  transform: rotateY(-90deg) rotateX(20deg);
+  transform-style: preserve-3d;
+}
+
+#tf-element-rotating-perspective.tf-fired .rotating-perspective-wrapper {
+  animation: perspective-rotate-in var(--tf-ui-show-duration) cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes perspective-rotate-in {
+  0% {
+    opacity: 0;
+    transform: rotateY(-90deg) rotateX(20deg);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(0deg) rotateX(0deg);
+  }
+}
+
+.rotating-perspective-inner {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.rotating-perspective-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--tf-ui-gradient-start), var(--tf-ui-gradient-end));
+  border-radius: 12px;
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+  z-index: -1;
+}
+
+#tf-element-rotating-perspective.tf-fired .rotating-perspective-background {
+  animation: bg-scale-down 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes bg-scale-down {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+.rotating-perspective-content {
+  padding: 28px 32px;
+  position: relative;
+  z-index: 1;
+  background-color: var(--tf-ui-background-color);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 217, 255, 0.2);
+  max-width: 850px;
+}
+
+.rotating-perspective-badge {
+  font-size: var(--tf-ui-font-size-secondary);
+  color: var(--tf-ui-accent-color);
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  opacity: 0;
+  transform: translateY(-15px);
+}
+
+#tf-element-rotating-perspective.tf-fired .rotating-perspective-badge {
+  animation: badge-slide-down 0.6s ease-out 0.4s forwards;
+}
+
+@keyframes badge-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rotating-perspective-headline {
+  margin: 0 0 16px 0;
+  font-size: var(--tf-ui-font-size-primary);
+  color: var(--tf-ui-primary-color);
+  font-weight: 900;
+  line-height: 1.25;
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+#tf-element-rotating-perspective.tf-fired .rotating-perspective-headline {
+  animation: headline-slide-right 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s forwards;
+}
+
+@keyframes headline-slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.rotating-perspective-accent-line {
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--tf-ui-accent-color), transparent);
+  border-radius: 2px;
+}
+
+#tf-element-rotating-perspective.tf-fired .rotating-perspective-accent-line {
+  animation: accent-line-expand 0.8s ease-out 1s forwards;
+}
+
+@keyframes accent-line-expand {
+  from {
+    width: 0;
+  }
+  to {
+    width: 120px;
+  }
+}
+
+#tf-element-rotating-perspective.tf-hiding .rotating-perspective-badge {
+   animation: badge-slide-up 0.4s ease-in 0s forwards;
+}
+
+@keyframes badge-slide-up {
+   from {
+     opacity: 1;
+     transform: translateY(0);
+   }
+   to {
+     opacity: 0;
+     transform: translateY(-15px);
+   }
+}
+
+#tf-element-rotating-perspective.tf-hiding .rotating-perspective-headline {
+   animation: headline-slide-left 0.4s ease-in 0s forwards;
+}
+
+@keyframes headline-slide-left {
+   from {
+     opacity: 1;
+     transform: translateX(0);
+   }
+   to {
+     opacity: 0;
+     transform: translateX(-40px);
+   }
+}
+
+#tf-element-rotating-perspective.tf-hiding .rotating-perspective-accent-line {
+   animation: accent-line-collapse 0.4s ease-in 0s forwards;
+}
+
+@keyframes accent-line-collapse {
+   from {
+     width: 120px;
+   }
+   to {
+     width: 0;
+   }
+}
+
+#tf-element-rotating-perspective.tf-hiding .rotating-perspective-background {
+   animation: bg-scale-up 0.5s ease-in 0.4s forwards;
+}
+
+@keyframes bg-scale-up {
+   0% {
+     opacity: 1;
+     transform: scaleY(1);
+   }
+   100% {
+     opacity: 0;
+     transform: scaleY(0);
+   }
+}
+
+#tf-element-rotating-perspective.tf-hiding .rotating-perspective-wrapper {
+   animation: perspective-rotate-out var(--tf-ui-hide-duration) cubic-bezier(0.36, 0, 0.66, -0.56) forwards;
+}
+
+@keyframes perspective-rotate-out {
+   0% {
+     opacity: 1;
+     transform: rotateY(0deg) rotateX(0deg);
+   }
+   100% {
+     opacity: 0;
+     transform: rotateY(90deg) rotateX(-20deg);
+   }
+}

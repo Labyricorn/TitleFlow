@@ -1,0 +1,334 @@
+.player-profile {
+  position: absolute;
+  left: var(--tf-ui-left, 48px);
+  bottom: var(--tf-ui-bottom, 72px);
+  width: var(--tf-ui-width, 560px);
+  height: var(--tf-ui-height, 230px);
+  transform: scale(var(--tf-ui-scale, 2));
+  transform-origin: left bottom;
+  color: #f8f8f8;
+
+  --tf-ui-left: 48px;
+  --tf-ui-bottom: 72px;
+  --tf-ui-width: 560px;
+  --tf-ui-height: 230px;
+  --tf-ui-scale: 2;
+  --tf-ui-show-duration: 850ms;
+  --tf-ui-onscreen-duration: 9000ms;
+  --tf-ui-hide-duration: 600ms;
+  --tf-ui-accent-color: #d31319;
+  --tf-ui-panel-color: #2e2e2e;
+  --tf-ui-panel-highlight: #7f7f7f;
+  --tf-ui-nameplate-color: #1f1f1f;
+  --tf-ui-strap-color: #cf0f14;
+  --tf-ui-text-color: #f8f8f8;
+  --tf-ui-stat-key-color: #f2f2f2;
+  --tf-ui-stat-value-color: #ffffff;
+  --tf-ui-shadow-color: rgba(0, 0, 0, 0.42);
+}
+
+.player-profile * {
+  box-sizing: border-box;
+}
+
+.player-profile__backplate,
+.player-profile__hero,
+.player-profile__stats,
+.player-profile__nameplate,
+.player-profile__strap {
+  position: absolute;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.18, 0.84, 0.24, 1), ease-in;
+  animation-duration: var(--tf-ui-show-duration, 850ms), var(--tf-ui-hide-duration, 600ms);
+  animation-delay: 0ms, var(--tf-ui-onscreen-duration, 9000ms);
+}
+
+.player-profile__backplate {
+  left: 24px;
+  top: 18px;
+  width: 468px;
+  height: 142px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 30%),
+    linear-gradient(135deg, var(--tf-ui-panel-highlight, #7f7f7f) 0%, var(--tf-ui-panel-color, #2e2e2e) 36%, #111111 100%);
+  clip-path: polygon(0 16%, 7% 0, 95% 0, 100% 18%, 100% 80%, 89% 100%, 0 100%);
+  box-shadow: 0 16px 32px var(--tf-ui-shadow-color, rgba(0, 0, 0, 0.42));
+  animation-name: profile-backplate-in, profile-backplate-out;
+}
+
+.player-profile__hero {
+  left: 34px;
+  top: 8px;
+  width: 124px;
+  height: 154px;
+  overflow: hidden;
+  animation-name: profile-hero-in, profile-hero-out;
+}
+
+.player-profile__silhouette {
+  position: absolute;
+  left: 4px;
+  top: 2px;
+  width: 112px;
+  height: 146px;
+  background: linear-gradient(180deg, #8f8f8f 0%, #a8a8a8 32%, #707070 100%);
+  clip-path: polygon(43% 0, 57% 5%, 63% 16%, 68% 29%, 75% 42%, 79% 56%, 83% 77%, 74% 100%, 31% 100%, 24% 81%, 18% 56%, 24% 36%, 29% 19%);
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.35));
+}
+
+.player-profile__head,
+.player-profile__torso,
+.player-profile__arm {
+  position: absolute;
+  background: linear-gradient(180deg, #bdbdbd 0%, #777777 100%);
+}
+
+.player-profile__head {
+  left: 41px;
+  top: 7px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.player-profile__torso {
+  left: 30px;
+  top: 30px;
+  width: 54px;
+  height: 84px;
+  clip-path: polygon(22% 0, 78% 0, 100% 29%, 88% 100%, 12% 100%, 0 29%);
+}
+
+.player-profile__arm {
+  width: 20px;
+  height: 70px;
+  border-radius: 18px;
+  top: 39px;
+}
+
+.player-profile__arm--front {
+  left: 18px;
+  transform: rotate(16deg);
+}
+
+.player-profile__arm--rear {
+  left: 74px;
+  transform: rotate(-18deg);
+}
+
+.player-profile__hero-label {
+  position: absolute;
+  top: 22px;
+  left: 34px;
+  font-family: "Arial Black", Impact, sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
+}
+
+.player-profile__stats {
+  left: 176px;
+  top: 24px;
+  width: 218px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation-name: profile-stats-in, profile-stats-out;
+}
+
+.player-profile__stat-row {
+  min-height: 17px;
+  display: grid;
+  grid-template-columns: 1.5fr 0.78fr;
+  align-items: center;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.14));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.player-profile__stat-key,
+.player-profile__stat-value {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.player-profile__stat-key {
+  padding: 0 8px;
+  font-weight: 700;
+  color: var(--tf-ui-stat-key-color, #f2f2f2);
+  letter-spacing: 0.06em;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.player-profile__stat-value {
+  justify-content: center;
+  padding: 0 6px;
+  color: var(--tf-ui-stat-value-color, #ffffff);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.player-profile__nameplate {
+  left: 20px;
+  bottom: 36px;
+  width: 486px;
+  height: 34px;
+  display: flex;
+  align-items: stretch;
+  background: linear-gradient(180deg, #434343 0%, var(--tf-ui-nameplate-color, #1f1f1f) 100%);
+  border-bottom: 3px solid var(--tf-ui-accent-color, #d31319);
+  clip-path: polygon(0 0, 96% 0, 100% 50%, 96% 100%, 0 100%, 1.7% 50%);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.34);
+  animation-name: profile-nameplate-in, profile-nameplate-out;
+}
+
+.player-profile__flag {
+  width: 28px;
+  margin: 5px 9px 5px 9px;
+  border-radius: 4px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.85), transparent 42%),
+    linear-gradient(180deg, #7fd450 0%, #4d9d2d 100%);
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 0;
+}
+
+.player-profile__flag::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  z-index: -1;
+}
+
+.player-profile__name {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-right: 22px;
+  font-family: "Arial Black", Impact, sans-serif;
+  font-size: 24px;
+  letter-spacing: 0.025em;
+  color: var(--tf-ui-text-color, #f8f8f8);
+  text-transform: uppercase;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+  white-space: nowrap;
+}
+
+.player-profile__strap {
+  left: 46px;
+  bottom: 14px;
+  width: 404px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  background: linear-gradient(180deg, var(--tf-ui-accent-color, #d31319) 0%, var(--tf-ui-strap-color, #cf0f14) 100%);
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.26);
+  clip-path: polygon(3% 0, 100% 0, 97% 100%, 0 100%);
+  animation-name: profile-strap-in, profile-strap-out;
+}
+
+#tf-element-player-profile.tf-hiding .player-profile__backplate {
+  animation-name: profile-backplate-out;
+  animation-duration: var(--tf-ui-hide-duration, 600ms);
+  animation-delay: 0ms;
+}
+
+#tf-element-player-profile.tf-hiding .player-profile__hero {
+  animation-name: profile-hero-out;
+  animation-duration: var(--tf-ui-hide-duration, 600ms);
+  animation-delay: 0ms;
+}
+
+#tf-element-player-profile.tf-hiding .player-profile__stats {
+  animation-name: profile-stats-out;
+  animation-duration: var(--tf-ui-hide-duration, 600ms);
+  animation-delay: 0ms;
+}
+
+#tf-element-player-profile.tf-hiding .player-profile__nameplate {
+  animation-name: profile-nameplate-out;
+  animation-duration: var(--tf-ui-hide-duration, 600ms);
+  animation-delay: 0ms;
+}
+
+#tf-element-player-profile.tf-hiding .player-profile__strap {
+  animation-name: profile-strap-out;
+  animation-duration: var(--tf-ui-hide-duration, 600ms);
+  animation-delay: 0ms;
+}
+
+@keyframes profile-backplate-in {
+  from { transform: translateX(-48px) skewX(-8deg); opacity: 0; }
+  to { transform: translateX(0) skewX(0deg); opacity: 1; }
+}
+
+@keyframes profile-backplate-out {
+  from { transform: translateX(0) skewX(0deg); opacity: 1; }
+  to { transform: translateX(-54px) skewX(-6deg); opacity: 0; }
+}
+
+@keyframes profile-hero-in {
+  from { transform: translateX(-70px) scale(0.86); opacity: 0; }
+  55% { opacity: 1; }
+  to { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+@keyframes profile-hero-out {
+  from { transform: translateX(0) scale(1); opacity: 1; }
+  to { transform: translateX(-46px) scale(0.92); opacity: 0; }
+}
+
+@keyframes profile-stats-in {
+  from { transform: translateX(54px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes profile-stats-out {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(44px); opacity: 0; }
+}
+
+@keyframes profile-nameplate-in {
+  from { transform: translateX(-26px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes profile-nameplate-out {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(-32px); opacity: 0; }
+}
+
+@keyframes profile-strap-in {
+  from { transform: scaleX(0.1); transform-origin: left center; opacity: 0; }
+  to { transform: scaleX(1); transform-origin: left center; opacity: 1; }
+}
+
+@keyframes profile-strap-out {
+  from { transform: scaleX(1); transform-origin: left center; opacity: 1; }
+  to { transform: scaleX(0.08); transform-origin: left center; opacity: 0; }
+}

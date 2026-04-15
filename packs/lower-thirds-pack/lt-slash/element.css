@@ -1,0 +1,117 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
+
+.lt-slash {
+  position: absolute;
+  bottom: var(--tf-ui-bottom, 120px);
+  left:   var(--tf-ui-left,   100px);
+  width: 320px;
+  height: 64px;
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  line-height: 1;
+
+  --tf-ui-left:   100px;
+  --tf-ui-bottom: 120px;
+  --tf-ui-accent-color: #cf4c4e;
+  --tf-ui-text-color: #ffffff;
+  --tf-ui-font-size: 16px;
+  --tf-ui-show-duration: 2000ms;
+  --tf-ui-onscreen-duration: 7000ms; /* fire→hide delay: show-duration + desired hold */
+  --tf-ui-hide-duration: 600ms;
+
+  font-size: var(--tf-ui-font-size, 16px);
+}
+
+.ls-slash-char {
+  position: absolute;
+  font-size: 4.8em;
+  top: -0.13em;
+  left: 0;
+  color: var(--tf-ui-accent-color);
+  font-weight: 400;
+  /*
+   * Two-animation chain: slash-in holds until onscreen-duration, then slash-out plays.
+   * animation-fill-mode: forwards holds the end state of whichever animation is last.
+   */
+  animation-name: ls-slash-in, ls-slash-out;
+  animation-duration: var(--tf-ui-show-duration, 2000ms), var(--tf-ui-hide-duration, 600ms);
+  animation-timing-function: cubic-bezier(.19, .76, .32, 1), ease;
+  animation-delay: 0ms, var(--tf-ui-onscreen-duration, 7000ms);
+  animation-iteration-count: 1, 1;
+  animation-fill-mode: forwards;
+}
+
+.ls-row {
+  overflow: hidden;
+  position: absolute;
+  font-size: 2em;
+  height: 1em;
+  width: 5em;
+  color: var(--tf-ui-text-color);
+  font-weight: 300;
+}
+
+.ls-row1 { top: 0;     left: 0.9em; }
+.ls-row2 { top: 0.8em; left: 0.5em; }
+
+.ls-row span {
+  display: block;
+  animation-timing-function: cubic-bezier(.19, .76, .32, 1), ease;
+  animation-iteration-count: 1, 1;
+  animation-fill-mode: forwards;
+  animation-duration: var(--tf-ui-show-duration, 2000ms), var(--tf-ui-hide-duration, 600ms);
+  animation-delay: 0ms, var(--tf-ui-onscreen-duration, 7000ms);
+}
+
+.ls-row1 span { animation-name: ls-row1-in, ls-row-out; }
+.ls-row2 span { animation-name: ls-row2-in, ls-row-out; }
+
+/* .tf-hiding — immediate on-demand hide overrides the timed chain */
+#tf-element-lt-slash.tf-hiding .ls-slash-char {
+  animation-name: ls-slash-out;
+  animation-duration: var(--tf-ui-hide-duration, 600ms);
+  animation-timing-function: ease;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+#tf-element-lt-slash.tf-hiding .ls-row span {
+  animation-name: ls-row-out;
+  animation-duration: var(--tf-ui-hide-duration, 600ms);
+  animation-timing-function: ease;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes ls-slash-in {
+  0%   { opacity: 0; transform: translate3d(6em, 0, 0); }
+  40%  { opacity: 0; transform: translate3d(6em, 0, 0); }
+  70%  { opacity: 1; transform: translate3d(1em, 0, 0); }
+  100% { opacity: 1; transform: translate3d(0,   0, 0); }
+}
+
+@keyframes ls-slash-out {
+  from { opacity: 1; transform: translate3d(0,   0, 0); }
+  to   { opacity: 0; transform: translate3d(6em, 0, 0); }
+}
+
+@keyframes ls-row1-in {
+  0%   { transform: translateX(-100%); }
+  45%  { transform: translateX(-100%); }
+  65%  { transform: translateX(0); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes ls-row2-in {
+  0%   { transform: translateX(-100%); }
+  55%  { transform: translateX(-100%); }
+  75%  { transform: translateX(0); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes ls-row-out {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
