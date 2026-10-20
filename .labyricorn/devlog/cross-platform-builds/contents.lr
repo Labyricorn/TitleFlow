@@ -1,0 +1,30 @@
+_model: devlog-entry
+---
+schema_version: 1
+---
+title: Linux and macOS builds and build documentation
+---
+date: 2026-04-15
+---
+author: Labyricorn
+---
+summary: TitleFlow gained distributable Linux and macOS binaries and a BUILD guide covering all three platforms.
+---
+tags: release, documentation
+---
+source_commit: 8fc014e4934b4c5337ae9378fe6b8bcbaa6a6648
+---
+body:
+
+The second commit in the repository made TitleFlow easier to run on other
+systems. It added prebuilt binaries for Linux on x86-64 and for macOS on both
+Intel and Apple Silicon, kept under `build/`, and a `BUILD.md` that explains the
+process.
+
+Because TitleFlow is a single stateless Go program, building for another
+platform is a matter of setting `GOOS` and `GOARCH`. The guide lists the
+three targets and states the only prerequisite: Go 1.26 or newer. The ignore
+rules were updated to exclude local build artifacts such as `.exe` files while
+keeping the distributable binaries in `build/`.
+
+[Commit 8fc014e](https://github.com/Labyricorn/TitleFlow/commit/8fc014e4934b4c5337ae9378fe6b8bcbaa6a6648)

@@ -1,0 +1,36 @@
+_model: devlog-entry
+---
+schema_version: 1
+---
+title: v0.4.3b: editor reload and the missing pack picker
+---
+date: 2026-04-15
+---
+author: Labyricorn
+---
+summary: A Reload button picks up external pack changes, and a custom template function that broke negation is removed.
+---
+tags: interface, html
+---
+source_commit: c78872fc6067a5ecdb5b08d574037b535325259e
+---
+body:
+
+**Reload.** The editor gained a Reload button beside the pack selector, backed by
+a new `/api/reload` endpoint. It rescans the `packs/` directory and sends a
+`reload-page` event to every connected runtime client, so OBS sources pick up
+changes made outside the editor.
+
+**The vanished pack picker.** Without `hidepack=true` in the URL, the pack picker
+and New Pack button were missing. A custom `not` template function in the editor
+and dock packages did not handle booleans correctly, so a check such as
+`{{if not .HidePack}}` always evaluated to false. Go's built-in `not` already
+handles both boolean negation and empty-slice checks, so the redundant override
+was removed from the editor and dock packages and they now behave the same.
+
+The lesson is a familiar one: shadowing a standard template function to cover a
+corner case is more likely to break the common case than the built-in is.
+
+This entry was written from the project's changelog.
+
+[Commit c78872f](https://github.com/Labyricorn/TitleFlow/commit/c78872fc6067a5ecdb5b08d574037b535325259e)

@@ -1,0 +1,44 @@
+_model: devlog-entry
+---
+schema_version: 1
+---
+title: v0.3.1b: named fire events, a collapsible dock, and a ticker
+---
+date: 2026-04-07
+---
+author: Labyricorn
+---
+summary: Fire events became element-defined controls, the dock got collapsible sections, and a timing bug in the lower third was fixed.
+---
+tags: interface, html, documentation
+---
+source_commit: c78872fc6067a5ecdb5b08d574037b535325259e
+---
+body:
+
+This release made overlays more expressive without breaking any existing pack.
+
+**Named fire events.** An element can declare any event name, not just `show` and
+`hide`, with `data-tf-fire` and `data-tf-label`. The dock renders each as a button
+in the element's header, and each press dispatches a `tf:fire` event carrying the
+element and event name. The `hide` event no longer removes the active class
+itself: the element's script now owns its exit animation and cleanup, using a
+`.tf-hiding` class pattern that the specification recommends.
+
+**Dock and controls.** Element panels collapse, while fire buttons stay visible.
+CSS variables whose values end in `ms` or `s` render as number inputs with
+steppers.
+
+**A bug worth recording.** The lower third chained three animations using
+`calc(var(...) + var(...))` in `animation-delay`, which failed in some Chromium
+versions and made the exit start immediately. The fix was a two-animation model
+with no `calc()`: an entrance, then an exit with an explicit delay. The hold time
+is simply the gap between them.
+
+The release added a pure-CSS scrolling ticker to the news pack, driven by the
+active class, plus new API, architecture, and troubleshooting documents. Existing
+packs continued to work unchanged.
+
+This entry was written from the project's changelog and design notes.
+
+[Commit c78872f](https://github.com/Labyricorn/TitleFlow/commit/c78872fc6067a5ecdb5b08d574037b535325259e)

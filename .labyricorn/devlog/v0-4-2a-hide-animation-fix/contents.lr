@@ -1,0 +1,40 @@
+_model: devlog-entry
+---
+schema_version: 1
+---
+title: v0.4.2a: making Hide play the exit animation
+---
+date: 2026-04-14
+---
+author: Labyricorn
+---
+summary: A Chromium animation-pairing quirk made the Hide button cut instead of animate out, fixed by cancelling in-flight animations first.
+---
+tags: html, interface
+---
+source_commit: c78872fc6067a5ecdb5b08d574037b535325259e
+---
+body:
+
+Packs that chain their exit in CSS, with `animation-name: in-anim, out-anim` and
+a delay on the second, animated correctly when the on-screen timer expired but
+not when the operator pressed Hide. The element cut or faded abruptly instead.
+
+The cause was in how Chromium pairs animations between the old and new style: by
+index in the `animation-name` list. Adding `.tf-hiding` changed the list from
+`[in, out]` to `[out]`, and the browser kept the delay that had been scheduled
+for the old second slot, so no exit animation visibly played. After the hide
+duration the element simply snapped to `display: none`.
+
+The fix is in the composer. The default hide path now cancels in-flight CSS
+animations on the element's subtree by setting `animation: none` and forcing a
+reflow before `.tf-hiding` is added. The new rule is then treated as a fresh
+animation set starting from frame zero. CSS transitions are unaffected.
+
+Every element in the `lower-thirds-pack` and `lower-thirds-extras` packs was
+confirmed affected and is fixed. Packs whose script calls `preventDefault()` on the hide event own their
+exit entirely and were not changed.
+
+This entry was written from the project's changelog.
+
+[Commit c78872f](https://github.com/Labyricorn/TitleFlow/commit/c78872fc6067a5ecdb5b08d574037b535325259e)

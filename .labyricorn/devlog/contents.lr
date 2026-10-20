@@ -1,0 +1,7 @@
+_model: devlog
+---
+schema_version: 1
+---
+title: TitleFlow development log
+---
+summary: Milestones and design decisions from building TitleFlow, an overlay pack builder and runtime server for OBS.

@@ -1,0 +1,46 @@
+_model: devlog-entry
+---
+schema_version: 1
+---
+title: v0.1a: the first release, packs as plain folders
+---
+date: 2026-04-06
+---
+author: Labyricorn
+---
+summary: The foundation: file-system packs, bindings, CSS-variable controls, fire events, and three local servers.
+---
+tags: architecture, local-first, html
+---
+source_commit: c78872fc6067a5ecdb5b08d574037b535325259e
+---
+body:
+
+TitleFlow's first release set the shape the project still has. A pack is an
+immediate subfolder of `packs/`, and each element inside it is a folder holding
+`element.html`, `element.css`, and an optional `element.js`. No configuration
+file is required, because the folder structure describes itself.
+
+Editable behavior is declared in the markup and styles rather than in a separate
+schema:
+
+- Text fields come from `data-tf-bind` and `data-tf-label` attributes.
+- Dock controls come from `--tf-ui-*` CSS variables, with a color, duration,
+  length, or text control inferred from the value.
+- `show` and `hide` fire events drive entrances and exits, and each dispatches a
+  `tf:fire` event that an element's script can handle.
+
+Three local servers split the work. The runtime serves the composed overlay to an
+OBS browser source and streams changes over server-sent events. The editor offers
+code panels and a preview that uses the same composition logic. The dock is the
+operator's control surface. A validator checks slugs, required files, binding
+pairs, variable names, and broad selectors, and a starter lower-third pack
+shipped as a working example.
+
+The release also listed its limits plainly: dock edits did not yet persist,
+OBS needed a manual refresh after a pack switch, and CSS validation was textual.
+
+This entry was written from the project's changelog. The repository's history
+begins with a later snapshot commit, which it references.
+
+[Commit c78872f](https://github.com/Labyricorn/TitleFlow/commit/c78872fc6067a5ecdb5b08d574037b535325259e)

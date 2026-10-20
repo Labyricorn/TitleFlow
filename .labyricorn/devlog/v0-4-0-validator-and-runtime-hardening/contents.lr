@@ -1,0 +1,42 @@
+_model: devlog-entry
+---
+schema_version: 1
+---
+title: v0.4.0: validator fixes and runtime hardening
+---
+date: 2026-04-09
+---
+author: Labyricorn
+---
+summary: A false-positive validator rule, Windows path handling, stricter API methods, and parse-once control extraction.
+---
+tags: architecture, configuration, html
+---
+source_commit: c78872fc6067a5ecdb5b08d574037b535325259e
+---
+body:
+
+The v0.4.0 pair of releases focused on correctness and stability.
+
+**Validator.** The first release fixed a rule that wrongly required
+`data-tf-bind` on any element carrying `data-tf-label`. Fire buttons legitimately
+pair a label with `data-tf-fire`, and the mismatch produced fourteen false errors
+across two starter packs. The validator now distinguishes bindings from fire
+buttons. A second fix builds required-file paths with `filepath.Join`, so the
+checks work on Windows.
+
+**Runtime API.** Control endpoints now require `POST`, with `OPTIONS` allowed for
+CORS preflight, while parameters are still read through `FormValue`, which
+accepts both query strings and form bodies. Assets are served from both
+`/assets/...` and the documented `/?path=assets/...` form, resolving from the
+pack root.
+
+**Stability.** Control parsing used to mutate shared element structs from several
+request paths, which risked data races. Bindings, CSS variables, and fire events
+are now parsed once at scan time, and handlers no longer mutate elements. Live
+control state resets on a pack reload, matching the documented behavior of
+ephemeral session state.
+
+This entry was written from the project's changelog.
+
+[Commit c78872f](https://github.com/Labyricorn/TitleFlow/commit/c78872fc6067a5ecdb5b08d574037b535325259e)
